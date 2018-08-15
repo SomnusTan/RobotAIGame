@@ -1,0 +1,36 @@
+{
+    "options": {
+        "useExtension": 0,
+        "layoutGap": 1,
+        "extend": 0,
+        "layoutMath": "3",
+        "sizeMode": "free"
+    },
+    "files": [
+        "./images/radiobutton_unselect.png",
+        "./images/radiobutton_select_up.png",
+        "./images/radiobutton_select_down.png",
+        "./images/radiobutton_select_disabled.png",
+        "./images/on.png",
+        "./images/off.png",
+        "./images/header.png",
+        "./images/handle.png",
+        "./images/checkbox_unselect.png",
+        "./images/checkbox_select_up.png",
+        "./images/checkbox_select_down.png",
+        "./images/checkbox_select_disabled.png",
+        "./images/button_up.png",
+        "./images/button_down.png",
+        "./images/border.png",
+        "./images/tracklight.png",
+        "./images/track_sb.png",
+        "./images/track_pb.png",
+        "./images/track.png",
+        "./images/thumb_pb.png",
+        "./images/thumb.png",
+        "./images/selected.png",
+        "./images/roundthumb.png"
+    ],
+    "version": 5,
+    "projectName": "component"
+}
