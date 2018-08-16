@@ -4,6 +4,8 @@ class ServerTimeData {
 
 	public static getData():ServerTimeData 
 	{
+		if(this.pool==null)
+			this.pool = new ObjectPool(ServerTimeData);
 		return this.pool.getObject() as ServerTimeData;
 	}
 
@@ -77,5 +79,5 @@ class ServerTimeData {
 	private _method:Function = undefined;
 	private _thisArg:any = undefined;
 	private _args:any[] = undefined;
-	private static pool:ObjectPool = new ObjectPool(ServerTimeData);
+	private static pool:ObjectPool;
 }

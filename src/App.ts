@@ -22,7 +22,7 @@ class App {
     public static init(stage: egret.Stage): void {
         this.stage = stage;
         Config.STAGE_WIDTH = document.body.clientWidth; //stage.stageWidth;
-        Config.STAGE_WIDTH = document.body.clientHeight;//stage.stageHeight;
+        Config.STAGE_HEIGHT = document.body.clientHeight;//stage.stageHeight;
         stage.addEventListener(egret.Event.RESIZE,this.onResize,this);
         this.timer = new TimeCenter(stage);
         this.data = new DataManager();

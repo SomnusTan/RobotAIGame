@@ -76,7 +76,7 @@ class MapLayer extends egret.DisplayObjectContainer {
     public showNode(show: boolean): void {
         this.mapGridContainer.graphics.clear();
         if (show) {
-            this.mapGridContainer.graphics.lineStyle(2, 0x0000ff,0.5);
+            this.mapGridContainer.graphics.lineStyle(1, 0xffffff,0.1);
             var col: number = Math.ceil(EnumMap.MAP_WIDTH / EnumMap.MAP_NODE_WIDTH);
             var row: number = Math.ceil(EnumMap.MAP_HEIGHT / EnumMap.MAP_NODE_HEIGHT);
             var colIndex: number, rowIndex: number;
