@@ -34,6 +34,8 @@ class StepInitVo extends StepVo {
             robot = robotlist[i];
             App.role.createRole(teamId, robot.roleid, robot.robottype, robot.hp, robot.hp, robot.columnid, robot.rowid);
         }
+        App.layer.mapLayer.updateAvatarDepth();
         this.end();
     }
+
 }

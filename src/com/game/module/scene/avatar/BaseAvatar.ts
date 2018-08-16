@@ -31,17 +31,23 @@ class BaseAvatar {
         this._nameBar = new NameBar();
         this._roleMovie = new MovieAvatar();
         this._roleMovie.setMcFactory(App.resource.getMcFactory("avatar1"));
+        this._roleMovie.father = this;
     }
 
     public initInfo(vo: BaseAvatarVo): void {
         this._vo = vo;
+        this._nameBar.init(this._vo.teamId);
         this._nameBar.initInfo(this._vo.name, this._vo.hp, this._vo.maxHp);
         this.playAction(EnumAction.STAND);
         this.scale = 0.6;
     }
 
-    public playAction(action: string): void {
-        this._roleMovie.playAction(action);
+    public playAction(action: string, playBack: FunctionVo = null): void {
+        this._roleMovie.playAction(action, playBack);
+    }
+
+    public updateHp(): void {
+        this._nameBar.updateHp(this._vo.hp, this._vo.maxHp);
     }
 
     public setGrid(col: number, row: number): void {
@@ -71,6 +77,7 @@ class BaseAvatar {
 
     public set x(value: number) {
         this._x = Math.floor(value);
+        this._col = MapUtil.getNodeXByX(this._x);
         this._roleMovie.x = this._x;
         this._nameBar.x = this._x;
     }
@@ -88,6 +95,7 @@ class BaseAvatar {
 
     public set y(value: number) {
         this._y = Math.floor(value);
+        this._row = MapUtil.getNodeYByY(this._y);
         this._roleMovie.y = this._y;
         this._nameBar.y = this._y + Math.floor(this._offY * this._scale);
     }

@@ -9,10 +9,12 @@ class NameBar extends egret.DisplayObjectContainer {
 
     public constructor() {
         super();
-        this.init();
     }
 
-    private init(): void {
+    /**
+     * 初始化样式
+     */
+    public init(style: number): void {
         this._hpBarBg = new egret.Bitmap(RES.getRes("img_blood_bg_png"));
         this._hpBarBg.width = NameBar.WIDTH + 2;
         this._hpBarBg.height = this._hpBarBg.height + 2;
@@ -28,8 +30,8 @@ class NameBar extends egret.DisplayObjectContainer {
 
         this._txtName = new egret.TextField();
         this._txtName.stroke = 1;
-        this._txtName.size = 24;
-        this._txtName.textColor = 0xffffff;
+        this._txtName.size = 20;
+        this._txtName.textColor = style == 1 ? 0xffffff : 0xffff00;
         this.addChild(this._txtName);
     }
 
@@ -50,10 +52,8 @@ class NameBar extends egret.DisplayObjectContainer {
         this._hpBar.width = hp / maxHp * NameBar.WIDTH;
     }
 
-    public remove():void
-    {
-        if(this.parent)
-        {
+    public remove(): void {
+        if (this.parent) {
             this.parent.removeChild(this);
         }
     }

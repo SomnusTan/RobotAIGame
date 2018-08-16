@@ -37,10 +37,15 @@ class RoleManager {
         vo.teamId = teamId;
         vo.roleId = roleid;
         vo.type = type;
+        vo.name = EnumAvatarType.getNameByType(type);
         vo.hp = hp;
         vo.maxHp = maxHp;
         avatar.initInfo(vo);
         avatar.setGrid(col, row);
+        if (col > Math.ceil(EnumMap.MAP_WIDTH / EnumMap.MAP_NODE_WIDTH) / 2)
+            avatar.dir = -1;
+        else
+            avatar.dir = 1;
         avatar.show();
         if (this._allRoleList.has(teamId) == false)
             this._allRoleList.put(teamId, new HashMap());

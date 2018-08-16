@@ -1,8 +1,10 @@
 class StepRoleMoveVo extends StepVo {
     private _teamId: number;
     private _roleid: number;
+    private _oldCol: number;
+    private _oldRow: number;
     private _path: any[];
-    private _target: BaseAvatar;
+    private _avatar: BaseAvatar;
     private _targetCol: number;
     private _targetRow: number;
 
@@ -14,8 +16,10 @@ class StepRoleMoveVo extends StepVo {
         super.parse(time, jsonData);
         this._teamId = this._jsonData.player;
         this._roleid = this._jsonData.roleid;
-        var oldCol: number = this._jsonData.org_columnid;
-        var oldRow: number = this._jsonData.org_rowid;
+        var oldCol: number = this._oldCol = this._jsonData.org_columnid;
+        var oldRow: number = this._oldRow = this._jsonData.org_rowid;
+        this._targetCol = this._jsonData.columnid;
+        this._targetRow = this._jsonData.rowid;
         var path: string = this._jsonData.walk;
         this._path = [];
         for (var i: number = 0, len: number = path.length; i < len; i++) {
@@ -38,38 +42,45 @@ class StepRoleMoveVo extends StepVo {
     }
 
     public toString(): string {
-        var name: string = this._target.vo ? this._target.vo.name : "null";
+        var name: string = this._avatar.vo ? this._avatar.vo.name : "null";
         return `move[teamId:${this._teamId},roleId:${this._roleid},name:${name},tx:${this._targetCol},ty:${this._targetRow}]`;
     }
 
     public exec(): void {
         super.exec();
-        this._target = App.role.getRole(this._teamId, this._roleid);
+        this._avatar = App.role.getRole(this._teamId, this._roleid);
         console.log(this.toString());
+        this.showPathGrid();
         this.startMove();
     }
 
+    private showPathGrid(): void {
+        App.layer.mapLayer.drawGridPath({ col: this._oldCol, row: this._oldRow }, this._path.slice(0, this._path.length - 1), { col: this._targetCol, row: this._targetRow });
+    }
+
     private startMove(): void {
+        App.layer.mapLayer.updateAvatarDepth();
         if (this._path.length > 0) {
             var pos: any = this._path.shift();
             var posX: number = MapUtil.getXByNodeX(pos.col);
             var posY: number = MapUtil.getYByNodeY(pos.row);
-            egret.Tween.get(this._target).to({ x: posX, y: posY }, this._target.vo.moveNodeTime).call(this.startMove, this);
-            if (posX > this._target.x)
-                this._target.dir = EnumDirection.RIGHT;
-            else if (posX < this._target.x)
-                this._target.dir = EnumDirection.LEFT;
-
-            this._target.playAction(EnumAction.MOVE);
+            egret.Tween.get(this._avatar).to({ x: posX, y: posY }, this._avatar.vo.moveNodeTime).call(this.startMove, this);
+            if (posX > this._avatar.x)
+                this._avatar.dir = EnumDirection.RIGHT;
+            else if (posX < this._avatar.x)
+                this._avatar.dir = EnumDirection.LEFT;
+            this._avatar.playAction(EnumAction.MOVE);
         }
         else {
-            this._target.playAction(EnumAction.STAND);
+            this._avatar.playAction(EnumAction.STAND);
             this.end();
         }
     }
+
     public dispose(): void {
+        App.layer.mapLayer.clearGrid();
         super.dispose()
         this._path = null;
-        this._target = null;
+        this._avatar = null;
     }
 }
