@@ -4,10 +4,6 @@ class Main extends eui.UILayer {
     protected createChildren(): void {
         super.createChildren();
 
-        egret.lifecycle.addLifecycleListener((context) => {
-            // custom lifecycle plugin
-        })
-
         egret.lifecycle.onPause = () => {
             egret.ticker.pause();
         }
@@ -60,12 +56,11 @@ class Main extends eui.UILayer {
 
     /**
      * 创建场景界面
-     * Create scene interface
      */
     protected createGameScene(): void {
         App.init(this.stage);
         let button = new eui.Button();
-        button.label = "Click!";
+        button.label = "开始播放";
         button.x = Config.STAGE_WIDTH - button.width >> 1;
         button.y = Config.STAGE_HEIGHT - button.height >> 1;
         App.layer.menuLayer.addChild(button);

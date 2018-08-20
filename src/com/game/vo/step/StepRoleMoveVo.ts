@@ -64,7 +64,7 @@ class StepRoleMoveVo extends StepVo {
             var pos: any = this._path.shift();
             var posX: number = MapUtil.getXByNodeX(pos.col);
             var posY: number = MapUtil.getYByNodeY(pos.row);
-            egret.Tween.get(this._avatar).to({ x: posX, y: posY }, this._avatar.vo.moveNodeTime).call(this.startMove, this);
+            egret.Tween.get(this._avatar).to({ x: posX, y: posY }, EnumSpeed.getMoveNodeTime()).call(this.startMove, this);
             if (posX > this._avatar.x)
                 this._avatar.dir = EnumDirection.RIGHT;
             else if (posX < this._avatar.x)

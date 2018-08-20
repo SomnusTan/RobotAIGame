@@ -11,8 +11,6 @@ class BaseAvatarVo {
     public name: string;
     /**类型 EnumAvatarType */
     public type: string;
-    /**移动一格消耗时间 */
-    public moveNodeTime: number = 200;
 
     public constructor() {
 

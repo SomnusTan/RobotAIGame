@@ -63,7 +63,7 @@ class StepVo {
     }
 
     protected end(): void {
-        App.timer.doTimeOnce(App.data, 100, App.data.execNextStep);
+        App.timer.doTimeOnce(App.data, EnumSpeed.getStepDelay(), App.data.execNextStep);
         this.dispose();
     }
 
