@@ -50,6 +50,19 @@ class StepRoleMoveVo extends StepVo {
         super.exec();
         this._avatar = App.role.getRole(this._teamId, this._roleid);
         console.log(this.toString());
+        if (App.layer.mapLayer.isInScreen(this._oldCol, this._oldRow) && App.layer.mapLayer.isInScreen(this._targetCol, this._targetRow)) {
+            this.doAction();
+        }
+        else {
+            var index: number = Math.floor(this._path.length >> 1) - 1;
+            if (index < 0)
+                index = 0;
+            App.layer.mapLayer.moveCamera(this._path[index].col, this._path[index].row, this.doAction, this);
+        }
+
+    }
+
+    private doAction(): void {
         this.showPathGrid();
         this.startMove();
     }

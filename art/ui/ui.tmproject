@@ -1,0 +1,24 @@
+{
+    "projectName": "ui",
+    "files": [
+        "./images/img_touxiang_1.png",
+        "./images/img_title_bg.png",
+        "./images/img_red_left.png",
+        "./images/img_red_bg_1.png",
+        "./images/img_red_1.png",
+        "./images/img_bule_bg_2.png",
+        "./images/img_bule_1.png",
+        "./images/img_blue_right.png",
+        "./images/img_blood_bg.png",
+        "./images/img_blood.png",
+        "./images/img_touxiang_2.png"
+    ],
+    "options": {
+        "extend": 0,
+        "layoutMath": "3",
+        "sizeMode": "free",
+        "useExtension": 0,
+        "layoutGap": 1
+    },
+    "version": 5
+}

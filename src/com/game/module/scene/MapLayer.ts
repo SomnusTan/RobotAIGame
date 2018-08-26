@@ -12,14 +12,14 @@ class MapLayer extends egret.DisplayObjectContainer {
     /**血条名字层 */
     public barContainer: egret.DisplayObjectContainer;
 
-    private _mapWidth: number;
-    private _mapHeight: number;
     /**中心点X */
     private _cameraX: number;
     /**中心点Y */
     private _cameraY: number;
 
     private _mapTileHash: HashMap;
+
+    private _mapRect: egret.Rectangle;
 
 
     public constructor() {
@@ -28,6 +28,11 @@ class MapLayer extends egret.DisplayObjectContainer {
     }
 
     private init(): void {
+        this.y = EnumMap.MAP_Y;
+
+        this._mapRect = new egret.Rectangle();
+        this.resetMapRect();
+
         this.mapContainer = new egret.DisplayObjectContainer();
         this.mapGridContainer = new egret.Shape();
         this.mapLineContainer = new egret.Shape();
@@ -40,25 +45,22 @@ class MapLayer extends egret.DisplayObjectContainer {
         this.addChild(this.avatarContainer);
         this.addChild(this.effectContainer);
         this.addChild(this.barContainer);
-        this._mapWidth = Config.STAGE_WIDTH
-        this._mapHeight = Config.STAGE_HEIGHT;
         App.stage.addEventListener(egret.Event.RESIZE, this.onResize, this);
     }
 
     private onResize(e: egret.Event): void {
-        this._mapWidth = Config.STAGE_WIDTH
-        this._mapHeight = Config.STAGE_HEIGHT;
         this.resetMapRect();
     }
 
     private resetMapRect(): void {
-
+        this._mapRect.width = Config.MAP_SCREEN_WIDTH;
+        this._mapRect.height = Config.MAP_SCREEN_HEIGHT;
+        this.scrollRect = this._mapRect;
     }
 
-    public moveCamera(x: number, y: number): void {
-
-    }
-
+    /**
+     * 初始化地图资源
+     */
     public initMap(): void {
         if (this._mapTileHash == null) {
             this._mapTileHash = new HashMap();
@@ -68,18 +70,66 @@ class MapLayer extends egret.DisplayObjectContainer {
             for (rowIndex = 0; rowIndex < row; rowIndex++) {
                 for (colIndex = 0; colIndex < col; colIndex++) {
                     mapTile = new MapTile();
-                    mapTile.init(colIndex + 1, rowIndex + 1);
+                    mapTile.init(rowIndex * col + colIndex + 1, colIndex, rowIndex);
                     this.mapContainer.addChild(mapTile);
                     this._mapTileHash.put(mapTile.id, mapTile);
                 }
             }
-            this.showNodeLine(true);
+            // this.showNodeLine(true);
         }
+    }
+
+    /**
+     * 是否在屏幕中
+     */
+    public isInScreen(col: number, row: number): boolean {
+        var x: number = MapUtil.getXByNodeX(col);
+        var y: number = MapUtil.getYByNodeY(row);
+        return x > this._mapRect.x && x < this._mapRect.x + this._mapRect.width
+            && y > this._mapRect.y && y < this._mapRect.y + this._mapRect.height;
+    }
+
+    /**
+     * 是否在中心区域(3个格子)
+     */
+    public isInCenterArea(col: number, row: number, range: number = 3): boolean {
+        var x: number = MapUtil.getXByNodeX(col);
+        var y: number = MapUtil.getYByNodeY(row);
+        var centerX: number = this._mapRect.x + (this._mapRect.width >> 1);
+        var centerY: number = this._mapRect.y + (this._mapRect.height >> 1);
+        return Math.abs(x - centerX) <= EnumMap.MAP_NODE_WIDTH * range && Math.abs(y - centerY) <= EnumMap.MAP_NODE_HEIGHT * range;
+    }
+
+    /**
+     * 移动镜头
+     */
+    public moveCamera(col: number, row: number, callBack?: Function, callBackObj?: any, callBackParams?: any[]): void {
+        var x: number = MapUtil.getXByNodeX(col) - (Config.MAP_SCREEN_WIDTH >> 1);
+        var y: number = MapUtil.getYByNodeY(row) - (Config.MAP_SCREEN_HEIGHT >> 1);
+        var mapX: number = this.getRange(x, EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH, 0);
+        var mapY: number = this.getRange(y, EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT, 0);
+        var duration: number = Math.sqrt(Math.pow(mapX - this._mapRect.x, 2) + Math.pow(mapY - this._mapRect.y, 2)) / EnumSpeed.getMapMoveSpeed();
+
+        egret.Tween.get(this._mapRect, { onChange: this.onUpdate, onChangeObj: this }).to({ x: mapX, y: mapY }, duration).call(callBack, callBackObj, callBackParams);
+    }
+
+    private onUpdate(): void {
+        this._mapRect.x = Math.floor(this._mapRect.x);
+        this._mapRect.y = Math.floor(this._mapRect.y);
+        this.scrollRect = this._mapRect;
+    }
+
+    private getRange(value: number, max: number, min: number): number {
+        if (value > max)
+            return max;
+        if (value < min)
+            return min;
+        return value;
     }
 
     public drawGridPath(src: any, path: any[], target: any): void {
         if (src) {
-            this.drawGrid(src.col, src.row, 0xff0000);
+            this.drawGrid(src.col, src.row, 0x0000ff);
         }
         if (path) {
             for (var i: number = 0, len: number = path.length; i < len; i++) {
@@ -87,13 +137,16 @@ class MapLayer extends egret.DisplayObjectContainer {
             }
         }
         if (target) {
-            this.drawGrid(target.col, target.row);
+            this.drawGrid(target.col, target.row, 0xff0000);
         }
     }
 
+    /**
+     * 绘制格子
+     */
     public drawGrid(col: number, row: number, color: number = 0x0000ff): void {
         this.mapGridContainer.graphics.beginFill(color, 0.4);
-        this.mapGridContainer.graphics.drawRect((col - 1) * EnumMap.MAP_NODE_WIDTH, (row - 1) * EnumMap.MAP_NODE_HEIGHT, EnumMap.MAP_NODE_WIDTH, EnumMap.MAP_NODE_HEIGHT);
+        this.mapGridContainer.graphics.drawRect((col) * EnumMap.MAP_NODE_WIDTH, (row) * EnumMap.MAP_NODE_HEIGHT, EnumMap.MAP_NODE_WIDTH, EnumMap.MAP_NODE_HEIGHT);
         this.mapGridContainer.graphics.endFill();
     }
 

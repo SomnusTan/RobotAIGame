@@ -7,6 +7,8 @@ class NameBar extends egret.DisplayObjectContainer {
 
     private static WIDTH: number = 80;
 
+    private static aScale9Grid: egret.Rectangle = new egret.Rectangle(3, 2, 2, 2);
+
     public constructor() {
         super();
     }
@@ -15,14 +17,16 @@ class NameBar extends egret.DisplayObjectContainer {
      * 初始化样式
      */
     public init(style: number): void {
-        this._hpBarBg = new egret.Bitmap(RES.getRes("img_blood_bg_png"));
+        this._hpBarBg = new egret.Bitmap(RES.getRes("img_blood_bg"));
+        this._hpBarBg.scale9Grid = NameBar.aScale9Grid;
         this._hpBarBg.width = NameBar.WIDTH + 2;
         this._hpBarBg.height = this._hpBarBg.height + 2;
         this.addChild(this._hpBarBg);
         this._hpBarBg.x = -this._hpBarBg.width >> 1;
         this._hpBarBg.y = -this._hpBarBg.height;
 
-        this._hpBar = new egret.Bitmap(RES.getRes("img_blood_png"));
+        this._hpBar = new egret.Bitmap(RES.getRes("img_blood"));
+        this._hpBar.scale9Grid = NameBar.aScale9Grid;
         this._hpBar.width = NameBar.WIDTH;
         this.addChild(this._hpBar);
         this._hpBar.x = -this._hpBar.width >> 1;

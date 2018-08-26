@@ -46,7 +46,8 @@ class MovieAvatar extends egret.MovieClip {
         }
         if (this._action == EnumAction.DEAD) {
             this.stop();
-            App.role.removeRole(this._father);
+            egret.Tween.get(this).to({alpha:0},EnumSpeed.getDeadDisappearTime()).call(App.role.removeRole,App.role,[this._father]);
+            // App.role.removeRole(this._father);
         }
         else {
             this.playAction(EnumAction.STAND);

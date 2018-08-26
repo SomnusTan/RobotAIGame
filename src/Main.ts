@@ -59,12 +59,18 @@ class Main extends eui.UILayer {
      */
     protected createGameScene(): void {
         App.init(this.stage);
-        let button = new eui.Button();
-        button.label = "开始播放";
-        button.x = Config.STAGE_WIDTH - button.width >> 1;
-        button.y = Config.STAGE_HEIGHT - button.height >> 1;
-        App.layer.menuLayer.addChild(button);
-        button.once(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        var menu: Menu = new Menu();
+        App.menu = menu;
+        App.layer.menuLayer.addChild(menu);
+        menu.show();
+        App.layer.initMapBg();
+        App.layer.mapLayer.initMap();
+        // let button = new eui.Button();
+        // button.label = "Click!";
+        // button.x = Config.STAGE_WIDTH - button.width >> 1;
+        // button.y = Config.STAGE_HEIGHT - button.height >> 1;
+        // App.layer.menuLayer.addChild(button);
+        this.stage.once(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     }
 
     /**
@@ -72,8 +78,6 @@ class Main extends eui.UILayer {
      * Click the button
      */
     private onButtonClick(e: egret.TouchEvent) {
-        e.currentTarget.parent.removeChild(e.currentTarget);
-        App.layer.mapLayer.initMap();
         RES.getResByUrl("resource/log/oplog.log.2018-08-13", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
     }
 

@@ -9,4 +9,11 @@ class TeamManager {
         this.team2 = new TeamVo();
     }
 
+
+    public getTeamVo(id: number): TeamVo {
+        if (this.team1.id == id)
+            return this.team1;
+        else if (this.team2.id = id)
+            return this.team2;
+    }
 }

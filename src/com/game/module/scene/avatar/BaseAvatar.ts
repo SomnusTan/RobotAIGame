@@ -37,9 +37,9 @@ class BaseAvatar {
     public initInfo(vo: BaseAvatarVo): void {
         this._vo = vo;
         this._nameBar.init(this._vo.teamId);
-        this._nameBar.initInfo(this._vo.name, this._vo.hp, this._vo.maxHp);
+        this._nameBar.initInfo(App.team.getTeamVo(this._vo.teamId).name + this._vo.name, this._vo.hp, this._vo.maxHp);
         this.playAction(EnumAction.STAND);
-        this.scale = 0.6;
+        // this.scale = 0.6;
     }
 
     public playAction(action: string, playBack: FunctionVo = null): void {
@@ -71,7 +71,7 @@ class BaseAvatar {
         this._scale = value;
         this._roleMovie.scaleX = this._scale * this._dir
         this._roleMovie.scaleY = this._scale;
-        this._nameBar.scaleX = this._nameBar.scaleY = this._scale;
+        // this._nameBar.scaleX = this._nameBar.scaleY = this._scale;
     }
 
 
@@ -106,6 +106,13 @@ class BaseAvatar {
 
     public get vo(): BaseAvatarVo {
         return this._vo;
+    }
+
+    public get action(): string {
+        if (this._roleMovie)
+            return this._roleMovie.action;
+        else
+            return null;
     }
 
     public show(): void {

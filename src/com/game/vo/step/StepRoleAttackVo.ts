@@ -38,10 +38,23 @@ class StepRoleAttackVo extends StepVo {
 		super.exec();
 		this._avatar = App.role.getRole(this._teamId, this._roleid);
 		this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
+
 		console.log(this.toString());
+
+		if (App.layer.mapLayer.isInCenterArea(this._avatar.col, this._avatar.row)) {
+			this.showPathGrid();
+			this.startAttack();
+		}
+		else {
+			App.layer.mapLayer.moveCamera(this._avatar.col, this._avatar.row, this.doAction, this);
+		}
+	}
+
+	private doAction(): void {
 		this.showPathGrid();
 		this.startAttack();
 	}
+
 	private showPathGrid(): void {
 		App.layer.mapLayer.drawGridPath({ col: this._avatar.col, row: this._avatar.row }, null, { col: this._targetAvatar.col, row: this._targetAvatar.row });
 	}
@@ -51,17 +64,29 @@ class StepRoleAttackVo extends StepVo {
 		if (this._targetIsAlive == 1)
 			this._targetAvatar.playAction(EnumAction.BE_HIT);
 		else
-			this._targetAvatar.playAction(EnumAction.DEAD);
+			this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.deadCallBack, this));
 		this._targetAvatar.vo.hp = this._targetHp;
 		this._targetAvatar.updateHp();
+		if (this._targetAvatar.vo.type == EnumAvatarType.AI_BRAIN) {
+			App.menu.updateHp(this._targetAvatar.vo.teamId, this._targetAvatar.vo.hp, this._targetAvatar.vo.maxHp);
+		}
 
 		//还要加攻击效果
+	}
+
+	private deadCallBack(): void {
+		if (this._targetAvatar) {
+			if (this._targetAvatar.action == EnumAction.DEAD) {
+				App.team.getTeamVo(this._targetAvatar.vo.teamId).removeAvatarNum(this._targetAvatar.vo.type, 1);
+				App.menu.updateTeamInfo(App.team.getTeamVo(this._targetAvatar.vo.teamId));
+				this._targetAvatar = null;
+			}
+		}
 	}
 
 	public dispose(): void {
 		super.dispose()
 		App.layer.mapLayer.clearGrid();
-		this._targetAvatar = null;
 		this._avatar = null;
 	}
 

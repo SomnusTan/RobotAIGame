@@ -3,6 +3,10 @@ class Config {
     public static STAGE_WIDTH: number;
     /**场景高 */
     public static STAGE_HEIGHT: number;
+    /**地图可显示宽 */
+    public static MAP_SCREEN_WIDTH: number;
+    /**地图可显示高 */
+    public static MAP_SCREEN_HEIGHT: number;
 
     /**是否调试 */
     public static isDebug: boolean;
@@ -11,5 +15,5 @@ class Config {
     /**版本号 */
     public static version: string = "1.0.0";
     /**当前游戏帧数 */
-    public static currentGameFps:number;
+    public static currentGameFps: number;
 }

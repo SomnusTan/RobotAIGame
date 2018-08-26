@@ -13,10 +13,13 @@ class StepInfoVo extends StepVo {
     public exec(): void {
         super.exec();
         App.global.fightuid = this._jsonData.fightuuid;
+        App.team.team1.reset();
         App.team.team1.dir = this._jsonData.player1dir;
         App.team.team1.name = this._jsonData.player1name;
-        App.team.team1.dir = this._jsonData.player2dir;
-        App.team.team1.name = this._jsonData.player2name;
+        App.team.team2.reset();
+        App.team.team2.dir = this._jsonData.player2dir;
+        App.team.team2.name = this._jsonData.player2name;
+        App.menu.initInfo(App.team.team1.name,App.team.team2.name);
         this.end();
     }
 }

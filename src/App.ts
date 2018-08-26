@@ -10,20 +10,22 @@ class App {
     /**显示层级 */
     public static layer: MainLayer;
     /**全局数据 */
-    public static global:GlobalManager;
+    public static global: GlobalManager;
     /**时间管理器 */
-    public static timer:TimeCenter;
+    public static timer: TimeCenter;
     /**资源管理器 */
-    public static resource:ResManager;
+    public static resource: ResManager;
     /**队伍管理器 */
-    public static team:TeamManager;
+    public static team: TeamManager;
+    /**主菜单 */
+    public static menu: Menu;
 
 
     public static init(stage: egret.Stage): void {
         this.stage = stage;
-        Config.STAGE_WIDTH = document.body.clientWidth; //stage.stageWidth;
-        Config.STAGE_HEIGHT = document.body.clientHeight;//stage.stageHeight;
-        stage.addEventListener(egret.Event.RESIZE,this.onResize,this);
+        this.stage.scaleMode = egret.StageScaleMode.NO_SCALE;
+        this.onResize();
+        stage.addEventListener(egret.Event.RESIZE, this.onResize, this);
         this.timer = new TimeCenter(stage);
         this.data = new DataManager();
         this.role = new RoleManager();
@@ -35,9 +37,14 @@ class App {
         this.stage.addChild(this.layer);
     }
 
-    private static onResize(e:egret.Event):void
-    {
-        Config.STAGE_WIDTH = this.stage.stageWidth;
-        Config.STAGE_WIDTH = this.stage.stageHeight;
+    private static onResize(e?: egret.Event): void {
+        Config.STAGE_WIDTH = document.body.clientWidth;//this.stage.stageWidth;
+        Config.STAGE_HEIGHT = document.body.clientHeight;//this.stage.stageHeight;
+        Config.MAP_SCREEN_WIDTH = this.stage.stageWidth;
+        Config.MAP_SCREEN_HEIGHT = this.stage.stageHeight - EnumMap.MAP_Y;
+        if(this.layer)
+            this.layer.onResize();
+        if(this.menu)
+            this.menu.onResize();
     }
 }
