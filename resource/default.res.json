@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,avatar1_json,avatar1_png,component_json,ui_json,UI_2048_jpg",
+			"keys": "bg_jpg,egret_icon_png,avatar1_json,avatar1_png,component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json",
 			"name": "preload"
 		}
 	],
@@ -1167,6 +1167,21 @@
 			"url": "assets/image/UI_2048.jpg",
 			"type": "image",
 			"name": "UI_2048_jpg"
+		},
+		{
+			"url": "assets/avatar/avatar1/juese_1_tex.png",
+			"type": "image",
+			"name": "juese_1_tex_png"
+		},
+		{
+			"url": "assets/avatar/avatar1/juese_1_ske.json",
+			"type": "json",
+			"name": "juese_1_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar1/juese_1_tex.json",
+			"type": "json",
+			"name": "juese_1_tex_json"
 		}
 	]
 }

@@ -20,4 +20,20 @@ class ResManager {
             return mcFactory;
         }
     }
+
+    public getDragonFactory(name: string): dragonBones.EgretFactory {
+        if (this._hash.has(name)) {
+            return this._hash.get(name);
+        }
+        else {
+            var skeletonData = RES.getRes(name + "_ske_json")
+            var data = RES.getRes(name + "_tex_json");
+            var txtr = RES.getRes(name + "_tex_png");
+            var factory: dragonBones.EgretFactory = new dragonBones.EgretFactory();
+            factory.parseDragonBonesData(skeletonData);
+            factory.parseTextureAtlasData(data,txtr);
+            this._hash.put(name, factory);
+            return factory;
+        }
+    }
 }

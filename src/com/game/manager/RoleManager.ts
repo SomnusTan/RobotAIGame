@@ -43,9 +43,9 @@ class RoleManager {
         avatar.initInfo(vo);
         avatar.setGrid(col, row);
         if (col > Math.ceil(EnumMap.MAP_WIDTH / EnumMap.MAP_NODE_WIDTH) / 2)
-            avatar.dir = -1;
+            avatar.dir = EnumDirection.LEFT;
         else
-            avatar.dir = 1;
+            avatar.dir = EnumDirection.RIGHT;
         avatar.show();
         if (this._allRoleList.has(teamId) == false)
             this._allRoleList.put(teamId, new HashMap());

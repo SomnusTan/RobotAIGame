@@ -62,6 +62,10 @@ class NameBar extends egret.DisplayObjectContainer {
         }
     }
 
+    public set barFilters(data: any[]) {
+        this._hpBar.filters = data;
+    }
+
     public dispose(): void {
         if (this._txtName) {
             if (this._txtName.parent)

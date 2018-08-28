@@ -3,9 +3,32 @@
  */
 class BaseAvatar {
 
+    private static FILTER_1: egret.Filter[] = [new egret.GlowFilter(0XFF0000, 1, 6, 6, 8, 8, false, false)];
+    private static FILTER_2: egret.Filter[] = [new egret.GlowFilter(0X0000FF, 1, 6, 6, 8, 8, false, false)];
+    // private static FILTER_BLUE: egret.Filter[] = [new egret.ColorMatrixFilter([
+    //     -1, 0, 0, 0,
+    //     255, 0, -1, 0,
+    //     0, 255, 0, 0,
+    //     -1, 0, 255, 0,
+    //     0, 0, 1, 0
+    // ])];
+    // private static FILTER_BLUE: egret.Filter[] = [new egret.ColorMatrixFilter([
+    //     1.6, 0, 0, 0, 0,
+    //     0, 1.6, 0, 0, 0,
+    //     0, 0, 1.6, 0, 0,
+    //     0, 0, 0, 1, 0
+    // ])];
+    private static FILTER_BLUE: egret.Filter[] = [new egret.ColorMatrixFilter([
+        0.1, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 1, 0,
+        0, 0, 0, 1, 0
+    ])];
+
     protected _vo: BaseAvatarVo;
 
-    protected _roleMovie: MovieAvatar;
+    // protected _roleMovie: MovieAvatar;
+    protected _roleMovie: DragonbonesAvatar;
 
     protected _nameBar: NameBar;
 
@@ -29,17 +52,26 @@ class BaseAvatar {
 
     private init(): void {
         this._nameBar = new NameBar();
-        this._roleMovie = new MovieAvatar();
-        this._roleMovie.setMcFactory(App.resource.getMcFactory("avatar1"));
+        // this._roleMovie = new MovieAvatar();
+        this._roleMovie = new DragonbonesAvatar();
+        // this._roleMovie.setMcFactory(App.resource.getMcFactory("avatar1"));
+        this._roleMovie.setFactory(App.resource.getDragonFactory("juese_1"));
         this._roleMovie.father = this;
     }
 
     public initInfo(vo: BaseAvatarVo): void {
         this._vo = vo;
+        if (this._vo.teamId == 1)
+            this._roleMovie.filters = BaseAvatar.FILTER_1;
+        else
+            this._roleMovie.filters = BaseAvatar.FILTER_2;
+
         this._nameBar.init(this._vo.teamId);
-        this._nameBar.initInfo(App.team.getTeamVo(this._vo.teamId).name + this._vo.name, this._vo.hp, this._vo.maxHp);
+        if (this._vo.teamId == 2)
+            this._nameBar.barFilters = BaseAvatar.FILTER_BLUE;
+        this._nameBar.initInfo(/*App.team.getTeamVo(this._vo.teamId).name + */this._vo.name, this._vo.hp, this._vo.maxHp);
         this.playAction(EnumAction.STAND);
-        // this.scale = 0.6;
+        this.scale = 0.3;
     }
 
     public playAction(action: string, playBack: FunctionVo = null): void {
@@ -97,7 +129,8 @@ class BaseAvatar {
         this._y = Math.floor(value);
         this._row = MapUtil.getNodeYByY(this._y);
         this._roleMovie.y = this._y;
-        this._nameBar.y = this._y + Math.floor(this._offY * this._scale);
+        // this._nameBar.y = this._y + Math.floor(this._offY * this._scale);
+        this._nameBar.y = this._y + this._offY;
     }
 
     public get y(): number {

@@ -61,6 +61,11 @@ class StepRoleAttackVo extends StepVo {
 
 	private startAttack(): void {
 		this._avatar.playAction(EnumAction.ATTACK, new FunctionVo(this.end, this));
+		App.timer.doTimeOnce(this, 500, this.dealyHit);
+		//还要加攻击效果
+	}
+
+	private dealyHit(): void {
 		if (this._targetIsAlive == 1)
 			this._targetAvatar.playAction(EnumAction.BE_HIT);
 		else
@@ -70,8 +75,6 @@ class StepRoleAttackVo extends StepVo {
 		if (this._targetAvatar.vo.type == EnumAvatarType.AI_BRAIN) {
 			App.menu.updateHp(this._targetAvatar.vo.teamId, this._targetAvatar.vo.hp, this._targetAvatar.vo.maxHp);
 		}
-
-		//还要加攻击效果
 	}
 
 	private deadCallBack(): void {
