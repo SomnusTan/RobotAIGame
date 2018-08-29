@@ -1,6 +1,8 @@
 class MainLayer extends egret.DisplayObjectContainer {
-    /**地图底（不动） */
-    public mapBg: eui.Image;
+
+    public mapBottomLayer: egret.DisplayObjectContainer;
+
+    public moveImage: eui.Image;
     /**地图层 */
     public mapLayer: MapLayer;
     /**菜单层 */
@@ -16,27 +18,31 @@ class MainLayer extends egret.DisplayObjectContainer {
     }
 
     private init(): void {
+        this.mapBottomLayer = new egret.DisplayObjectContainer();
+        this.moveImage = new eui.Image();
         this.mapLayer = new MapLayer();
         this.menuLayer = new egret.DisplayObjectContainer();
         this.moduleLayer = new egret.DisplayObjectContainer();
         this.alertLayer = new egret.DisplayObjectContainer();
+        this.addChild(this.mapBottomLayer);
+        this.addChild(this.moveImage);
         this.addChild(this.mapLayer);
         this.addChild(this.menuLayer);
         this.addChild(this.moduleLayer);
         this.addChild(this.alertLayer);
     }
 
-    public initMapBg(): void {
-        if (this.mapBg == null) {
-            this.mapBg = new eui.Image("UI_2048_jpg")
-            this.addChildAt(this.mapBg, 0);
-        }
-        this.onResize();
+    public initImage(): void {
+        this.moveImage.source = "space_ship_png";
+        this.moveImage.x = -this.moveImage.width;
+        this.moveImage.y = -this.moveImage.height;
     }
 
-    public onResize(): void {
-        if (this.mapBg) {
-            this.mapBg.x = Config.STAGE_WIDTH - this.mapBg.width >> 1;
-        }
+    public startMove(): void {
+        this.moveImage.x = -this.moveImage.width;
+        this.moveImage.y = -this.moveImage.height;
+        var distance: number = Math.sqrt((Config.STAGE_WIDTH + this.moveImage.width) * (Config.STAGE_WIDTH + this.moveImage.width) + (Config.STAGE_HEIGHT + this.moveImage.height) * (Config.STAGE_HEIGHT + this.moveImage.height));
+        var time: number = distance * 30;
+        egret.Tween.get(this.moveImage).to({ x: Config.STAGE_WIDTH, y: Config.STAGE_HEIGHT }, time).call(this.startMove, this);
     }
 }

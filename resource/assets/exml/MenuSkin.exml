@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="MenuSkin" width="1032" height="363" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="MenuSkin" width="1032" height="293" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="img_touxiang_1" y="20" x="0"/>
-	<e:Image y="153" x="0" source="img_red_bg_1" height="210" scale9Grid="13,10,71,12"/>
+	<e:Image y="153" x="0" source="img_red_bg_1" height="140" scale9Grid="13,10,71,12"/>
 	<e:Image source="img_title_bg" y="16" x="146"/>
-	<e:Image y="153" x="927" source="img_bule_bg_2" scale9Grid="20,13,65,9" height="210"/>
+	<e:Image y="153" x="927" source="img_bule_bg_2" scale9Grid="20,13,65,9" height="140"/>
 	<e:Image y="20" source="img_touxiang_2" x="921"/>
 	<e:Image y="35" x="165" source="img_red_left"/>
 	<e:Image id="imgBlood1" y="41" x="179" source="img_red_1"/>
@@ -12,6 +12,6 @@
 	<e:Label id="txtTeamName1" text=" " x="313" y="92" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
 	<e:Label id="txtTeamLeft1" text=" " x="0.5" y="164" size="18" anchorOffsetX="0" width="100" textColor="0x0cf4ff" lineSpacing="8" textAlign="right"/>
 	<e:Label id="txtTeamLeft2" text=" " x="928" y="164" size="18" anchorOffsetX="0" width="100" textColor="0x0cf4ff" lineSpacing="8" textAlign="right"/>
-	<e:Label id="txtRound" text="Round" x="436" y="28" size="26" italic="true" anchorOffsetX="0" width="156" textAlign="center" bold="true"/>
+	<e:Label id="txtRound" text="Round" y="28" size="26" italic="true" anchorOffsetX="0" width="156" textAlign="center" bold="true" horizontalCenter="0"/>
 	<e:Label id="txtTeamName2" text=" " x="566" y="92" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
 </e:Skin>

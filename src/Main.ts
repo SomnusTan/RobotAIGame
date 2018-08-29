@@ -63,8 +63,8 @@ class Main extends eui.UILayer {
         App.menu = menu;
         App.layer.menuLayer.addChild(menu);
         menu.show();
-        App.layer.initMapBg();
         App.layer.mapLayer.initMap();
+        App.layer.initImage();
         // let button = new eui.Button();
         // button.label = "Click!";
         // button.x = Config.STAGE_WIDTH - button.width >> 1;
@@ -78,6 +78,7 @@ class Main extends eui.UILayer {
      * Click the button
      */
     private onButtonClick(e: egret.TouchEvent) {
+        App.layer.startMove();
         RES.getResByUrl("resource/log/oplog.log.2018-08-13", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
     }
 

@@ -42,9 +42,7 @@ class App {
         Config.STAGE_HEIGHT = document.body.clientHeight;//this.stage.stageHeight;
         Config.MAP_SCREEN_WIDTH = this.stage.stageWidth;
         Config.MAP_SCREEN_HEIGHT = this.stage.stageHeight - EnumMap.MAP_Y;
-        if(this.layer)
-            this.layer.onResize();
-        if(this.menu)
+        if (this.menu)
             this.menu.onResize();
     }
 }

@@ -4,7 +4,7 @@ class EnumAction {
     /**攻击 */
     public static ATTACK: string = "attack";
     /**移动 */
-    public static MOVE: string = "idle";
+    public static MOVE: string = "run";
     /**受击 */
     public static BE_HIT: string = "hit";
     /**死亡 */

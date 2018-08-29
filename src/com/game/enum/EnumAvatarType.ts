@@ -30,4 +30,11 @@ class EnumAvatarType {
         return this.RANK_LIST.indexOf(type);
     }
 
+    /**
+     * 获取资源ID
+     */
+    public static getResName(type: string): string {
+        return "juese_" + ((this.RANK_LIST.indexOf(type) + 1) % 2 + 1);
+    }
+
 }

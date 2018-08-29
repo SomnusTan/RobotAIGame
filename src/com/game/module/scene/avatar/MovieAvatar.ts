@@ -8,12 +8,21 @@ class MovieAvatar extends egret.MovieClip {
 
     private _playBack: FunctionVo;
 
+    public static INDEX: number = 0;
+
+    public index: number;
+
     public constructor() {
         super();
+        this.index = MovieAvatar.INDEX++;
     }
 
     public set father(value: BaseAvatar) {
         this._father = value;
+    }
+
+    public get father(): BaseAvatar {
+        return this._father;
     }
 
     public setMcFactory(mcFactory: egret.MovieClipDataFactory): void {
@@ -46,7 +55,7 @@ class MovieAvatar extends egret.MovieClip {
         }
         if (this._action == EnumAction.DEAD) {
             this.stop();
-            egret.Tween.get(this).to({alpha:0},EnumSpeed.getDeadDisappearTime()).call(App.role.removeRole,App.role,[this._father]);
+            egret.Tween.get(this).to({ alpha: 0 }, EnumSpeed.getDeadDisappearTime()).call(App.role.removeRole, App.role, [this._father]);
             // App.role.removeRole(this._father);
         }
         else {

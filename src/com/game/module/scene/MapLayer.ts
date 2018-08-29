@@ -12,6 +12,9 @@ class MapLayer extends egret.DisplayObjectContainer {
     /**血条名字层 */
     public barContainer: egret.DisplayObjectContainer;
 
+    /**地图底（不动） */
+    private _mapBg: eui.Image;
+
     /**中心点X */
     private _cameraX: number;
     /**中心点Y */
@@ -20,6 +23,10 @@ class MapLayer extends egret.DisplayObjectContainer {
     private _mapTileHash: HashMap;
 
     private _mapRect: egret.Rectangle;
+
+    private _offsetScaleX: number = 1;
+
+    private _offsetScaleY: number = 1;
 
 
     public constructor() {
@@ -31,7 +38,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         this.y = EnumMap.MAP_Y;
 
         this._mapRect = new egret.Rectangle();
-        this.resetMapRect();
+
 
         this.mapContainer = new egret.DisplayObjectContainer();
         this.mapGridContainer = new egret.Shape();
@@ -53,15 +60,39 @@ class MapLayer extends egret.DisplayObjectContainer {
     }
 
     private resetMapRect(): void {
+        if (this._mapBg && this._mapTileHash) {
+            var mw: number = EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH;
+            var dw: number = this._mapBg.width - Config.MAP_SCREEN_WIDTH;
+            var mh: number = EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT;
+            var dh: number = this._mapBg.height - Config.STAGE_HEIGHT;
+            this._offsetScaleX = dw / mw;
+            this._offsetScaleY = dh / mh;
+        }
+
+        var mapX: number = this.getRange(this._mapRect.x, EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH, 0);
+        var mapY: number = this.getRange(this._mapRect.y, EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT, 0);
+        this._mapRect.x = mapX;
+        this._mapRect.y = mapY;
         this._mapRect.width = Config.MAP_SCREEN_WIDTH;
         this._mapRect.height = Config.MAP_SCREEN_HEIGHT;
+        App.layer.mapBottomLayer.x = Math.floor(-mapX * this._offsetScaleX);
+        App.layer.mapBottomLayer.y = Math.floor(-mapY * this._offsetScaleY);
         this.scrollRect = this._mapRect;
+    }
+
+    public initMapBottom(): void {
+        if (this._mapBg == null) {
+            this._mapBg = new eui.Image("UI_2048_jpg")
+            App.layer.mapBottomLayer.addChild(this._mapBg);
+
+        }
     }
 
     /**
      * 初始化地图资源
      */
     public initMap(): void {
+        this.initMapBottom();
         if (this._mapTileHash == null) {
             this._mapTileHash = new HashMap();
             var col: number = Math.ceil(EnumMap.MAP_WIDTH / EnumMap.MAP_TILE_WIDTH);
@@ -77,6 +108,7 @@ class MapLayer extends egret.DisplayObjectContainer {
             }
             // this.showNodeLine(true);
         }
+        this.resetMapRect();
     }
 
     /**
@@ -116,6 +148,8 @@ class MapLayer extends egret.DisplayObjectContainer {
     private onUpdate(): void {
         this._mapRect.x = Math.floor(this._mapRect.x);
         this._mapRect.y = Math.floor(this._mapRect.y);
+        App.layer.mapBottomLayer.x = Math.floor(-this._mapRect.x * this._offsetScaleX);
+        App.layer.mapBottomLayer.y = Math.floor(-this._mapRect.y * this._offsetScaleY);
         this.scrollRect = this._mapRect;
     }
 
@@ -186,10 +220,16 @@ class MapLayer extends egret.DisplayObjectContainer {
             list.push(avatar);
         }
         list.sort((a: MovieAvatar, b: MovieAvatar) => {
-            if (a.y < b.y)
+            if (Math.floor(a.y) < Math.floor(b.y))
                 return -1;
-            else
+            else if (Math.floor(a.y) > Math.floor(b.y))
                 return 1;
+            else {
+                if (a.x < b.x)
+                    return -1;
+                else
+                    return 1;
+            }
         })
         childrenCount = list.length;
         index = 0;

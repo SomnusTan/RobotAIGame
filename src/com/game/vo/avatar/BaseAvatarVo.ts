@@ -10,10 +10,23 @@ class BaseAvatarVo {
     /**名字 */
     public name: string;
     /**类型 EnumAvatarType */
-    public type: string;
+    private _type: string;
+
+    public resName: string;
 
     public constructor() {
 
+    }
+
+    public set type(value: string) {
+        this._type = value;
+        this.resName = EnumAvatarType.getResName(this._type)
+    }
+    /**
+     * 类型 EnumAvatarType
+     */
+    public get type(): string {
+        return this._type;
     }
 
 

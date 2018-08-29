@@ -5,6 +5,7 @@ class Menu extends egret.Sprite {
     private _hpRect1: egret.Rectangle;
     private _hpRect2: egret.Rectangle;
     private _rectW: number = 0;
+    private _roundEffect: RoundEffect;
 
     public constructor() {
         super();
@@ -27,6 +28,13 @@ class Menu extends egret.Sprite {
     }
 
     public hide(): void {
+    }
+
+    public showRoundEffect(round: number): void {
+        if (this._roundEffect == null) {
+            this._roundEffect = new RoundEffect();
+        }
+        this._roundEffect.show(round);
     }
 
     public onResize(): void {

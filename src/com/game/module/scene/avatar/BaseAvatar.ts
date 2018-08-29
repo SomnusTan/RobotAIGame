@@ -55,12 +55,12 @@ class BaseAvatar {
         // this._roleMovie = new MovieAvatar();
         this._roleMovie = new DragonbonesAvatar();
         // this._roleMovie.setMcFactory(App.resource.getMcFactory("avatar1"));
-        this._roleMovie.setFactory(App.resource.getDragonFactory("juese_1"));
         this._roleMovie.father = this;
     }
 
     public initInfo(vo: BaseAvatarVo): void {
         this._vo = vo;
+        this._roleMovie.setFactory(App.resource.getDragonFactory(this._vo.resName));
         if (this._vo.teamId == 1)
             this._roleMovie.filters = BaseAvatar.FILTER_1;
         else
@@ -74,7 +74,13 @@ class BaseAvatar {
         this.scale = 0.3;
     }
 
+    public playEffect():void{
+        
+    }
+
     public playAction(action: string, playBack: FunctionVo = null): void {
+        if (action == EnumAction.MOVE && this._vo.type == EnumAvatarType.SLUNG_SHOT_SOLDIER)
+            action = EnumAction.STAND;
         this._roleMovie.playAction(action, playBack);
     }
 

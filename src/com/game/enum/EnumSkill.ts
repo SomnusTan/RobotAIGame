@@ -1,6 +1,8 @@
-class EnumSkill
-{
-    public static SKILL1:number = 0;
+class EnumSkill {
 
-    public static SKILL2:number = 0;
+    public static SKILL_DATA: any = { OverLordSoldier: [500], ArmourSoldier: [500], SlungshotSoldier: [500] };
+
+    public static getSkillData(type: string): any {
+        return this.SKILL_DATA[type];
+    }
 }

@@ -31,7 +31,7 @@ class ResManager {
             var txtr = RES.getRes(name + "_tex_png");
             var factory: dragonBones.EgretFactory = new dragonBones.EgretFactory();
             factory.parseDragonBonesData(skeletonData);
-            factory.parseTextureAtlasData(data,txtr);
+            factory.parseTextureAtlasData(data, txtr);
             this._hash.put(name, factory);
             return factory;
         }

@@ -61,7 +61,8 @@ class StepRoleAttackVo extends StepVo {
 
 	private startAttack(): void {
 		this._avatar.playAction(EnumAction.ATTACK, new FunctionVo(this.end, this));
-		App.timer.doTimeOnce(this, 500, this.dealyHit);
+		var skillData: any = EnumSkill.getSkillData(this._avatar.vo.type);
+		App.timer.doTimeOnce(this, skillData[0], this.dealyHit);
 		//还要加攻击效果
 	}
 

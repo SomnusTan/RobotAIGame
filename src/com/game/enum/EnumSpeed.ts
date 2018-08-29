@@ -6,11 +6,11 @@ class EnumSpeed {
     /**创角间隔 */
     public static CREATE_ROLE_DELAY: number = 250;
     /**地图每毫秒移动多少像素 */
-    public static MAP_MOVE_SPEED: number = 4;
+    public static MAP_MOVE_SPEED: number = 2;
     /**死亡消失时间 */
     public static DEAD_DISAPPEAR_TIME: number = 2000;
     /**时间倍数 */
-    public static SPEED: number = 8;
+    public static SPEED: number = 2;
 
     /**
      * 每格移动时间

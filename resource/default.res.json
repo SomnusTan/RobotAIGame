@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,avatar1_json,avatar1_png,component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json",
+			"keys": "bg_jpg,egret_icon_png,avatar1_json,avatar1_png,component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png",
 			"name": "preload"
 		}
 	],
@@ -1182,6 +1182,26 @@
 			"url": "assets/avatar/avatar1/juese_1_tex.json",
 			"type": "json",
 			"name": "juese_1_tex_json"
+		},
+		{
+			"url": "assets/avatar/avatar2/juese_2_tex.png",
+			"type": "image",
+			"name": "juese_2_tex_png"
+		},
+		{
+			"url": "assets/avatar/avatar2/juese_2_ske.json",
+			"type": "json",
+			"name": "juese_2_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar2/juese_2_tex.json",
+			"type": "json",
+			"name": "juese_2_tex_json"
+		},
+		{
+			"name": "space_ship_png",
+			"type": "image",
+			"url": "assets/image/space_ship.png"
 		}
 	]
 }
