@@ -70,7 +70,8 @@ class Main extends eui.UILayer {
         // button.x = Config.STAGE_WIDTH - button.width >> 1;
         // button.y = Config.STAGE_HEIGHT - button.height >> 1;
         // App.layer.menuLayer.addChild(button);
-        this.stage.once(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        App.layer.mapLayer.once(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     }
 
     /**
@@ -78,6 +79,8 @@ class Main extends eui.UILayer {
      * Click the button
      */
     private onButtonClick(e: egret.TouchEvent) {
+        // DeadEffect.getEffect().show(App.layer.alertLayer, e.stageX, e.stageY);
+        // return;
         App.layer.startMove();
         RES.getResByUrl("resource/log/oplog.log.2018-08-13", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
     }

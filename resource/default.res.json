@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,avatar1_json,avatar1_png,component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png",
+			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,blow_ske_json,blow_tex_json,blow_tex_png",
 			"name": "preload"
 		}
 	],
@@ -1199,9 +1199,24 @@
 			"name": "juese_2_tex_json"
 		},
 		{
-			"name": "space_ship_png",
+			"url": "assets/image/space_ship.png",
 			"type": "image",
-			"url": "assets/image/space_ship.png"
+			"name": "space_ship_png"
+		},
+		{
+			"url": "assets/effect/blow_ske.json",
+			"type": "json",
+			"name": "blow_ske_json"
+		},
+		{
+			"url": "assets/effect/blow_tex.json",
+			"type": "json",
+			"name": "blow_tex_json"
+		},
+		{
+			"url": "assets/effect/blow_tex.png",
+			"type": "image",
+			"name": "blow_tex_png"
 		}
 	]
 }

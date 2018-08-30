@@ -10,4 +10,8 @@ class MenuUI extends BaseUI {
 	public constructor() {
 		super("MenuSkin");
 	}
+
+	public get width(): number {
+		return 1032;
+	}
 }

@@ -22,6 +22,7 @@ class DragonbonesAvatar extends egret.Sprite {
         this._dragonbonesFactory = mcFactory;
         if (this._dragonbones == null) {
             this._dragonbones = this._dragonbonesFactory.buildArmatureDisplay("armatureName");
+            this._dragonbones.animation.timeScale = EnumSpeed.SPEED;
             this.addChild(this._dragonbones);
         }
     }

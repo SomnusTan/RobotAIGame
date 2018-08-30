@@ -7,6 +7,12 @@ class Menu extends egret.Sprite {
     private _rectW: number = 0;
     private _roundEffect: RoundEffect;
 
+    private _btnMode: eui.Button;
+
+    private MOUSE_MODE: string = "鼠标操作";
+
+    private AUTO_MODE: string = "自动镜头";
+
     public constructor() {
         super();
         this.init();
@@ -16,6 +22,14 @@ class Menu extends egret.Sprite {
         this._view = new MenuUI();
         this.addChild(this._view);
 
+        this._btnMode = new eui.Button();
+        this._btnMode.skinName = "skins.ButtonSkin";
+        this._btnMode.label = this.AUTO_MODE;
+        this._btnMode.height = 40;
+        this._btnMode.x = 5;
+        this._btnMode.y = 5;
+        this.addChild(this._btnMode);
+
         this._hpRect1 = new egret.Rectangle(0, 0, 0, 0);
         this._view.imgBlood1.scrollRect = this._hpRect1;
 
@@ -24,10 +38,16 @@ class Menu extends egret.Sprite {
     }
 
     public show(): void {
+        this._btnMode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeMode, this);
         this.onResize();
     }
 
     public hide(): void {
+    }
+
+    private onChangeMode(e: egret.TouchEvent): void {
+        Config.isMouseMode = !Config.isMouseMode;
+        this._btnMode.label = Config.isMouseMode ? this.MOUSE_MODE : this.AUTO_MODE;
     }
 
     public showRoundEffect(round: number): void {

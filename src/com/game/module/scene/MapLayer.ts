@@ -28,6 +28,14 @@ class MapLayer extends egret.DisplayObjectContainer {
 
     private _offsetScaleY: number = 1;
 
+    private _startX: number;
+
+    private _startY: number;
+
+    private _startStageX: number;
+
+    private _startStageY: number;
+
 
     public constructor() {
         super();
@@ -53,6 +61,37 @@ class MapLayer extends egret.DisplayObjectContainer {
         this.addChild(this.effectContainer);
         this.addChild(this.barContainer);
         App.stage.addEventListener(egret.Event.RESIZE, this.onResize, this);
+        this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
+    }
+
+    private onTouchBegin(e: egret.TouchEvent): void {
+        if (Config.isMouseMode) {
+            App.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
+            App.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
+            this._startX = this._mapRect.x;
+            this._startY = this._mapRect.y;
+            this._startStageX = e.stageX;
+            this._startStageY = e.stageY;
+        }
+    }
+
+    private onTouchMove(e: egret.TouchEvent): void {
+        var offX: number = e.stageX - this._startStageX;
+        var offY: number = e.stageY - this._startStageY;
+        var mapX: number = this._startX - offX;
+        var mapY: number = this._startY - offY;
+        mapX = this.getRange(mapX, EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH, 0);
+        mapY = this.getRange(mapY, EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT, 0);
+        this._mapRect.x = mapX;
+        this._mapRect.y = mapY;
+        App.layer.mapBottomLayer.x = Math.floor(-mapX * this._offsetScaleX);
+        App.layer.mapBottomLayer.y = Math.floor(-mapY * this._offsetScaleY);
+        this.scrollRect = this._mapRect;
+    }
+
+    private onTouchEnd(e: egret.TouchEvent): void {
+        App.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
+        App.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
     }
 
     private onResize(e: egret.Event): void {
@@ -136,13 +175,19 @@ class MapLayer extends egret.DisplayObjectContainer {
      * 移动镜头
      */
     public moveCamera(col: number, row: number, callBack?: Function, callBackObj?: any, callBackParams?: any[]): void {
-        var x: number = MapUtil.getXByNodeX(col) - (Config.MAP_SCREEN_WIDTH >> 1);
-        var y: number = MapUtil.getYByNodeY(row) - (Config.MAP_SCREEN_HEIGHT >> 1);
-        var mapX: number = this.getRange(x, EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH, 0);
-        var mapY: number = this.getRange(y, EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT, 0);
-        var duration: number = Math.sqrt(Math.pow(mapX - this._mapRect.x, 2) + Math.pow(mapY - this._mapRect.y, 2)) / EnumSpeed.getMapMoveSpeed();
+        if (Config.isMouseMode) {
+            if (callBack != null)
+                callBack.apply(callBackObj, callBackParams);
+        }
+        else {
+            var x: number = MapUtil.getXByNodeX(col) - (Config.MAP_SCREEN_WIDTH >> 1);
+            var y: number = MapUtil.getYByNodeY(row) - (Config.MAP_SCREEN_HEIGHT >> 1);
+            var mapX: number = this.getRange(x, EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH, 0);
+            var mapY: number = this.getRange(y, EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT, 0);
+            var duration: number = Math.sqrt(Math.pow(mapX - this._mapRect.x, 2) + Math.pow(mapY - this._mapRect.y, 2)) / EnumSpeed.getMapMoveSpeed();
 
-        egret.Tween.get(this._mapRect, { onChange: this.onUpdate, onChangeObj: this }).to({ x: mapX, y: mapY }, duration).call(callBack, callBackObj, callBackParams);
+            egret.Tween.get(this._mapRect, { onChange: this.onUpdate, onChangeObj: this }).to({ x: mapX, y: mapY }, duration).call(callBack, callBackObj, callBackParams);
+        }
     }
 
     private onUpdate(): void {
@@ -179,7 +224,7 @@ class MapLayer extends egret.DisplayObjectContainer {
      * 绘制格子
      */
     public drawGrid(col: number, row: number, color: number = 0x0000ff): void {
-        this.mapGridContainer.graphics.beginFill(color, 0.4);
+        this.mapGridContainer.graphics.beginFill(color, 0.2);
         this.mapGridContainer.graphics.drawRect((col) * EnumMap.MAP_NODE_WIDTH, (row) * EnumMap.MAP_NODE_HEIGHT, EnumMap.MAP_NODE_WIDTH, EnumMap.MAP_NODE_HEIGHT);
         this.mapGridContainer.graphics.endFill();
     }

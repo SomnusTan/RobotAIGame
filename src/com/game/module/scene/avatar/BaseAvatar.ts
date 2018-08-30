@@ -3,8 +3,8 @@
  */
 class BaseAvatar {
 
-    private static FILTER_1: egret.Filter[] = [new egret.GlowFilter(0XFF0000, 1, 6, 6, 8, 8, false, false)];
-    private static FILTER_2: egret.Filter[] = [new egret.GlowFilter(0X0000FF, 1, 6, 6, 8, 8, false, false)];
+    private static FILTER_1: egret.Filter[] = [new egret.GlowFilter(0XFF0000, 1, 6, 6, 6, 6, false, false)];
+    private static FILTER_2: egret.Filter[] = [new egret.GlowFilter(0X0000FF, 1, 6, 6, 6, 6, false, false)];
     // private static FILTER_BLUE: egret.Filter[] = [new egret.ColorMatrixFilter([
     //     -1, 0, 0, 0,
     //     255, 0, -1, 0,
@@ -71,7 +71,7 @@ class BaseAvatar {
             this._nameBar.barFilters = BaseAvatar.FILTER_BLUE;
         this._nameBar.initInfo(/*App.team.getTeamVo(this._vo.teamId).name + */this._vo.name, this._vo.hp, this._vo.maxHp);
         this.playAction(EnumAction.STAND);
-        this.scale = 0.3;
+        this.scale = 0.2;
     }
 
     public playEffect():void{

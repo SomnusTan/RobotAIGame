@@ -16,4 +16,6 @@ class Config {
     public static version: string = "1.0.0";
     /**当前游戏帧数 */
     public static currentGameFps: number;
+    /**是否鼠标模式 */
+    public static isMouseMode: boolean = false;
 }
