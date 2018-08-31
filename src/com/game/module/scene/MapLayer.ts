@@ -157,18 +157,19 @@ class MapLayer extends egret.DisplayObjectContainer {
         var x: number = MapUtil.getXByNodeX(col);
         var y: number = MapUtil.getYByNodeY(row);
         return x > this._mapRect.x && x < this._mapRect.x + this._mapRect.width
-            && y > this._mapRect.y && y < this._mapRect.y + this._mapRect.height;
+            && y > this._mapRect.y + EnumMap.MAP_NODE_HEIGHT && y < this._mapRect.y + this._mapRect.height - EnumMap.MAP_NODE_HEIGHT;
     }
 
     /**
-     * 是否在中心区域(3个格子)
+     * 是否在中心区域(2个格子)
      */
-    public isInCenterArea(col: number, row: number, range: number = 3): boolean {
+    public isInCenterArea(col: number, row: number, range: number = 2): boolean {
         var x: number = MapUtil.getXByNodeX(col);
         var y: number = MapUtil.getYByNodeY(row);
-        var centerX: number = this._mapRect.x + (this._mapRect.width >> 1);
-        var centerY: number = this._mapRect.y + (this._mapRect.height >> 1);
-        return Math.abs(x - centerX) <= EnumMap.MAP_NODE_WIDTH * range && Math.abs(y - centerY) <= EnumMap.MAP_NODE_HEIGHT * range;
+        var offsetX: number = this._mapRect.width - range * EnumMap.MAP_NODE_WIDTH >> 1;
+        var offsetY: number = this._mapRect.height - range * EnumMap.MAP_NODE_HEIGHT >> 1;
+        return x >= this._mapRect.x + offsetX && x <= this._mapRect.x + this._mapRect.width - offsetX &&
+               y >= this._mapRect.y + offsetY && y <= this._mapRect.y + this._mapRect.height - offsetY;
     }
 
     /**
