@@ -19,12 +19,13 @@ class StepRoleAttackVo extends StepVo {
 	public parse(time: string, jsonData: any): void {
 		super.parse(time, jsonData);
 		this._dropHp = this._jsonData.drophp;
+		this._targetHp = this._jsonData.dstrobot.hp;
+
 		this._teamId = this._jsonData.srcrobot.player;
 		this._roleid = this._jsonData.srcrobot.roleid;
 
 		this._targetTeamId = this._jsonData.dstrobot.player;
 		this._targetRoleId = this._jsonData.dstrobot.roleid;
-		this._targetHp = this._jsonData.dstrobot.hp;
 		this._targetIsAlive = this._jsonData.dstrobot.isalive;
 	}
 
@@ -60,6 +61,10 @@ class StepRoleAttackVo extends StepVo {
 	}
 
 	private startAttack(): void {
+		if (this._avatar.col > this._targetAvatar.col)
+			this._avatar.dir = EnumDirection.LEFT;
+		else if (this._avatar.col < this._targetAvatar.col)
+			this._avatar.dir = EnumDirection.RIGHT;
 		this._avatar.playAction(EnumAction.ATTACK, new FunctionVo(this.end, this));
 		var skillData: any = EnumSkill.getSkillData(this._avatar.vo.type);
 		App.timer.doTimeOnce(this, skillData[0] / EnumSpeed.SPEED, this.dealyHit);
@@ -67,11 +72,14 @@ class StepRoleAttackVo extends StepVo {
 	}
 
 	private dealyHit(): void {
-		DeadEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
-		if (this._targetIsAlive == 1)
+		if (this._targetIsAlive == 1) {
+			BeHitEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
 			this._targetAvatar.playAction(EnumAction.BE_HIT);
-		else
+		}
+		else {
+			DeadEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
 			this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.deadCallBack, this));
+		}
 		this._targetAvatar.vo.hp = this._targetHp;
 		this._targetAvatar.updateHp();
 		if (this._targetAvatar.vo.type == EnumAvatarType.AI_BRAIN) {

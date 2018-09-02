@@ -30,10 +30,10 @@ class StepRoleMoveVo extends StepVo {
                 case "L":
                     oldCol--;
                     break;
-                case "T":
+                case "U":
                     oldRow--;
                     break;
-                case "B":
+                case "D":
                     oldRow++;
                     break;
             }
@@ -73,6 +73,7 @@ class StepRoleMoveVo extends StepVo {
 
     private startMove(): void {
         App.layer.mapLayer.updateAvatarDepth();
+        this._avatar.visible = App.layer.mapLayer.isInScreen(this._avatar.col, this._avatar.row, 0);
         if (this._path.length > 0) {
             var pos: any = this._path.shift();
             var posX: number = MapUtil.getXByNodeX(pos.col);

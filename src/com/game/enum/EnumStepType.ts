@@ -20,4 +20,13 @@ class EnumStepType {
     /**游戏胜负的日志，最后一条 */
     public static RESULT: string = "CPlayerWinLog";
 
+    /**占领大本营 */
+    public static SEIZE_BASE: string = "CAttackPeerBase";
+
+    /**AI大脑不在安全区而掉血 */
+    public static AI_DROP_HP: string = "CRobotDropHpNotInSafe";
+    
+    /**bug引起AI大脑掉血 */
+    public static BUG: string = "CRobotBug";
+
 }

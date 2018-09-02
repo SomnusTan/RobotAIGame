@@ -18,11 +18,14 @@ class DragonbonesAvatar extends egret.Sprite {
         this._father = value;
     }
 
+    public get father():BaseAvatar{
+        return this._father;
+    }
+
     public setFactory(mcFactory: dragonBones.EgretFactory): void {
         this._dragonbonesFactory = mcFactory;
         if (this._dragonbones == null) {
             this._dragonbones = this._dragonbonesFactory.buildArmatureDisplay("armatureName");
-            this._dragonbones.animation.timeScale = EnumSpeed.SPEED;
             this.addChild(this._dragonbones);
         }
     }
@@ -30,6 +33,11 @@ class DragonbonesAvatar extends egret.Sprite {
     public playAction(action: string, playBack: FunctionVo = null): void {
         if (this._action == action)
             return;
+        if (this._father.vo.type == EnumAvatarType.SLUNG_SHOT_SOLDIER && action == EnumAction.MOVE)
+            action = EnumAction.STAND;
+        else if (this._father.vo.type == EnumAvatarType.OVERLORD_SOLDIER && action == EnumAction.STAND)
+            action = EnumAction.MOVE;
+        this._dragonbones.animation.timeScale = EnumSpeed.SPEED;
         this._action = action;
         this._playBack = playBack;
         if (EnumAction.LOOP_ACTION_LIST.indexOf(action) == -1) {

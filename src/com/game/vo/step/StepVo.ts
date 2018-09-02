@@ -33,6 +33,15 @@ class StepVo {
             case EnumStepType.ROLE_ATTACK:
                 vo = new StepRoleAttackVo();
                 break;
+            case EnumStepType.SEIZE_BASE:
+                vo = new StepSeizeBaseVo();
+                break;
+            case EnumStepType.AI_DROP_HP:
+                vo = new StepAIDropVo();
+                break;
+            case EnumStepType.BUG:
+                vo = new StepBugVo();
+                break;
             case EnumStepType.RESULT:
                 vo = new StepResultVo();
                 break;

@@ -1,31 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,blow_ske_json,blow_tex_json,blow_tex_png",
+			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,juese_3_tex_png,juese_3_ske_json,juese_3_tex_json,juese_4_ske_json,juese_4_tex_json,juese_4_tex_png,NPC_blow_tex_png,NPC_blow_tex_json,NPC_blow_ske_json",
 			"name": "preload"
 		}
 	],
 	"resources": [
-		{
-			"url": "assets/bg.jpg",
-			"type": "image",
-			"name": "bg_jpg"
-		},
-		{
-			"url": "assets/egret_icon.png",
-			"type": "image",
-			"name": "egret_icon_png"
-		},
-		{
-			"url": "assets/avatar/avatar1.json",
-			"type": "json",
-			"name": "avatar1_json"
-		},
-		{
-			"url": "assets/avatar/avatar1.png",
-			"type": "image",
-			"name": "avatar1_png"
-		},
 		{
 			"url": "assets/ui/component.json",
 			"type": "sheet",
@@ -1161,7 +1141,7 @@
 			"url": "assets/ui/ui.json",
 			"type": "sheet",
 			"name": "ui_json",
-			"subkeys": "img_blood,img_blood_bg,img_blue_right,img_bule_1,img_bule_bg_2,img_red_1,img_red_bg_1,img_red_left,img_title_bg,img_touxiang_1,img_touxiang_2"
+			"subkeys": "img_blood,img_blood_bg,img_blue_right,img_bule_1,img_bule_bg_2,img_red_1,img_red_bg_1,img_red_left,img_title_bg,img_touxiang_1,img_touxiang_2,img_winer_bg"
 		},
 		{
 			"url": "assets/image/UI_2048.jpg",
@@ -1204,19 +1184,49 @@
 			"name": "space_ship_png"
 		},
 		{
-			"url": "assets/effect/blow_ske.json",
-			"type": "json",
-			"name": "blow_ske_json"
-		},
-		{
-			"url": "assets/effect/blow_tex.json",
-			"type": "json",
-			"name": "blow_tex_json"
-		},
-		{
-			"url": "assets/effect/blow_tex.png",
+			"url": "assets/avatar/avatar3/juese_3_tex.png",
 			"type": "image",
-			"name": "blow_tex_png"
+			"name": "juese_3_tex_png"
+		},
+		{
+			"url": "assets/avatar/avatar3/juese_3_ske.json",
+			"type": "json",
+			"name": "juese_3_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar3/juese_3_tex.json",
+			"type": "json",
+			"name": "juese_3_tex_json"
+		},
+		{
+			"url": "assets/avatar/avatar4/juese_4_ske.json",
+			"type": "json",
+			"name": "juese_4_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar4/juese_4_tex.json",
+			"type": "json",
+			"name": "juese_4_tex_json"
+		},
+		{
+			"url": "assets/avatar/avatar4/juese_4_tex.png",
+			"type": "image",
+			"name": "juese_4_tex_png"
+		},
+		{
+			"url": "assets/effect/blow/NPC_blow_tex.png",
+			"type": "image",
+			"name": "NPC_blow_tex_png"
+		},
+		{
+			"url": "assets/effect/blow/NPC_blow_tex.json",
+			"type": "json",
+			"name": "NPC_blow_tex_json"
+		},
+		{
+			"url": "assets/effect/blow/NPC_blow_ske.json",
+			"type": "json",
+			"name": "NPC_blow_ske_json"
 		}
 	]
 }

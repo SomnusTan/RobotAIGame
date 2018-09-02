@@ -82,7 +82,7 @@ class Main extends eui.UILayer {
         // DeadEffect.getEffect().show(App.layer.alertLayer, e.stageX, e.stageY);
         // return;
         App.layer.startMove();
-        RES.getResByUrl("resource/log/oplog.log.2018-08-13", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
+        RES.getResByUrl("resource/log/oplog_1535731215-3184c11c-d266-4f1d-8793-8861e980a308.log", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
     }
 
 }

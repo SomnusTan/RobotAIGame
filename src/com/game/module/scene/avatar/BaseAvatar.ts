@@ -46,6 +46,8 @@ class BaseAvatar {
     /**方向 EnumDirection -1：左 1：右 */
     protected _dir: number = 1;
 
+    private _visible = true;
+
     public constructor() {
         this.init();
     }
@@ -71,16 +73,14 @@ class BaseAvatar {
             this._nameBar.barFilters = BaseAvatar.FILTER_BLUE;
         this._nameBar.initInfo(/*App.team.getTeamVo(this._vo.teamId).name + */this._vo.name, this._vo.hp, this._vo.maxHp);
         this.playAction(EnumAction.STAND);
-        this.scale = 0.2;
+        this.scale = EnumAvatarType.RES_SCALE_LIST[EnumAvatarType.RES_LIST.indexOf(this._vo.type)];//0.2;
     }
 
-    public playEffect():void{
-        
+    public playEffect(): void {
+
     }
 
     public playAction(action: string, playBack: FunctionVo = null): void {
-        if (action == EnumAction.MOVE && this._vo.type == EnumAvatarType.SLUNG_SHOT_SOLDIER)
-            action = EnumAction.STAND;
         this._roleMovie.playAction(action, playBack);
     }
 
@@ -145,6 +145,18 @@ class BaseAvatar {
 
     public get vo(): BaseAvatarVo {
         return this._vo;
+    }
+
+    public set visible(value: boolean) {
+        if (this._visible != value) {
+            this._visible = value;
+            this._nameBar.visible = this._visible;
+            this._roleMovie.visible = this._visible;
+        }
+    }
+
+    public get visible(): boolean {
+        return this._visible;
     }
 
     public get action(): string {

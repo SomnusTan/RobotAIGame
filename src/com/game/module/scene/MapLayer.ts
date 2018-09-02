@@ -1,14 +1,14 @@
 class MapLayer extends egret.DisplayObjectContainer {
     /**地图层 */
-    public mapContainer: egret.DisplayObjectContainer;
+    public mapContainer: MapMaskContainer;
     /**格子绘制层 */
-    public mapGridContainer: egret.Shape;
+    public mapGridContainer: MapMaskContainer;
     /**网格线层 */
-    public mapLineContainer: egret.Shape;
+    public mapLineContainer: MapMaskContainer;
     /**角色层 */
     public avatarContainer: egret.DisplayObjectContainer;
     /**特效层 */
-    public effectContainer: egret.DisplayObjectContainer;
+    public effectContainer: MapMaskContainer;
     /**血条名字层 */
     public barContainer: egret.DisplayObjectContainer;
 
@@ -48,18 +48,23 @@ class MapLayer extends egret.DisplayObjectContainer {
         this._mapRect = new egret.Rectangle();
 
 
-        this.mapContainer = new egret.DisplayObjectContainer();
-        this.mapGridContainer = new egret.Shape();
-        this.mapLineContainer = new egret.Shape();
+        this.mapContainer = new MapMaskContainer();
+        this.mapGridContainer = new MapMaskContainer();
+        this.mapLineContainer = new MapMaskContainer();
         this.avatarContainer = new egret.DisplayObjectContainer();
-        this.effectContainer = new egret.DisplayObjectContainer();
+        this.effectContainer = new MapMaskContainer();
         this.barContainer = new egret.DisplayObjectContainer();
         this.addChild(this.mapContainer);
+        this.addChild(this.mapContainer.maskSp);
         this.addChild(this.mapGridContainer);
+        this.addChild(this.mapGridContainer.maskSp);
         this.addChild(this.mapLineContainer);
+        this.addChild(this.mapLineContainer.maskSp);
         this.addChild(this.avatarContainer);
         this.addChild(this.effectContainer);
+        this.addChild(this.effectContainer.maskSp);
         this.addChild(this.barContainer);
+
         App.stage.addEventListener(egret.Event.RESIZE, this.onResize, this);
         this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
     }
@@ -86,7 +91,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         this._mapRect.y = mapY;
         App.layer.mapBottomLayer.x = Math.floor(-mapX * this._offsetScaleX);
         App.layer.mapBottomLayer.y = Math.floor(-mapY * this._offsetScaleY);
-        this.scrollRect = this._mapRect;
+        this.setMapPos(-this._mapRect.x, -this._mapRect.y);
     }
 
     private onTouchEnd(e: egret.TouchEvent): void {
@@ -108,6 +113,11 @@ class MapLayer extends egret.DisplayObjectContainer {
             this._offsetScaleY = dh / mh;
         }
 
+        this.mapContainer.onResize();
+        this.mapGridContainer.onResize();
+        this.mapLineContainer.onResize();
+        this.effectContainer.onResize();
+
         var mapX: number = this.getRange(this._mapRect.x, EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH, 0);
         var mapY: number = this.getRange(this._mapRect.y, EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT, 0);
         this._mapRect.x = mapX;
@@ -116,7 +126,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         this._mapRect.height = Config.MAP_SCREEN_HEIGHT;
         App.layer.mapBottomLayer.x = Math.floor(-mapX * this._offsetScaleX);
         App.layer.mapBottomLayer.y = Math.floor(-mapY * this._offsetScaleY);
-        this.scrollRect = this._mapRect;
+        this.setMapPos(-this._mapRect.x, -this._mapRect.y);
     }
 
     public initMapBottom(): void {
@@ -152,16 +162,24 @@ class MapLayer extends egret.DisplayObjectContainer {
 
     /**
      * 是否在屏幕中
+     * @param col
+     * @param row
+     * @param range 距边缘的格子数
      */
-    public isInScreen(col: number, row: number): boolean {
+    public isInScreen(col: number, row: number, range: number = 1): boolean {
         var x: number = MapUtil.getXByNodeX(col);
         var y: number = MapUtil.getYByNodeY(row);
-        return x > this._mapRect.x && x < this._mapRect.x + this._mapRect.width
-            && y > this._mapRect.y + EnumMap.MAP_NODE_HEIGHT && y < this._mapRect.y + this._mapRect.height - EnumMap.MAP_NODE_HEIGHT;
+        var offsetX: number = EnumMap.MAP_NODE_WIDTH * range;
+        var offsetY: number = EnumMap.MAP_NODE_HEIGHT * range;
+        return x >= this._mapRect.x + offsetX && x <= this._mapRect.x + this._mapRect.width - offsetX
+            && y >= this._mapRect.y + offsetY && y <= this._mapRect.y + this._mapRect.height - offsetY;
     }
 
     /**
      * 是否在中心区域(2个格子)
+     * @param col
+     * @param row
+     * @param range 
      */
     public isInCenterArea(col: number, row: number, range: number = 2): boolean {
         var x: number = MapUtil.getXByNodeX(col);
@@ -169,7 +187,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         var offsetX: number = this._mapRect.width - range * EnumMap.MAP_NODE_WIDTH >> 1;
         var offsetY: number = this._mapRect.height - range * EnumMap.MAP_NODE_HEIGHT >> 1;
         return x >= this._mapRect.x + offsetX && x <= this._mapRect.x + this._mapRect.width - offsetX &&
-               y >= this._mapRect.y + offsetY && y <= this._mapRect.y + this._mapRect.height - offsetY;
+            y >= this._mapRect.y + offsetY && y <= this._mapRect.y + this._mapRect.height - offsetY;
     }
 
     /**
@@ -196,7 +214,24 @@ class MapLayer extends egret.DisplayObjectContainer {
         this._mapRect.y = Math.floor(this._mapRect.y);
         App.layer.mapBottomLayer.x = Math.floor(-this._mapRect.x * this._offsetScaleX);
         App.layer.mapBottomLayer.y = Math.floor(-this._mapRect.y * this._offsetScaleY);
-        this.scrollRect = this._mapRect;
+        this.setMapPos(-this._mapRect.x, -this._mapRect.y);
+    }
+
+    private setMapPos(x: number, y: number): void {
+        this.mapContainer.x = x;
+        this.mapGridContainer.x = x;
+        this.mapLineContainer.x = x;
+        this.avatarContainer.x = x;
+        this.effectContainer.x = x;
+        this.barContainer.x = x;
+
+        this.mapContainer.y = y;
+        this.mapGridContainer.y = y;
+        this.mapLineContainer.y = y;
+        this.avatarContainer.y = y;
+        this.effectContainer.y = y;
+        this.barContainer.y = y;
+        this.updateAvatarVisible();
     }
 
     private getRange(value: number, max: number, min: number): number {
@@ -256,16 +291,16 @@ class MapLayer extends egret.DisplayObjectContainer {
      * 更新角色深度
      */
     public updateAvatarDepth(): void {
-        var list: MovieAvatar[] = [];
+        var list: DragonbonesAvatar[] = [];
         var childrenCount: number = this.avatarContainer.numChildren;
         var index: number = 0;
-        var avatar: MovieAvatar;
+        var avatar: DragonbonesAvatar;
         var pos: number;
         while (index < childrenCount) {
-            avatar = this.avatarContainer.getChildAt(index++) as MovieAvatar;
+            avatar = this.avatarContainer.getChildAt(index++) as DragonbonesAvatar;
             list.push(avatar);
         }
-        list.sort((a: MovieAvatar, b: MovieAvatar) => {
+        list.sort((a: DragonbonesAvatar, b: DragonbonesAvatar) => {
             if (Math.floor(a.y) < Math.floor(b.y))
                 return -1;
             else if (Math.floor(a.y) > Math.floor(b.y))
@@ -285,6 +320,16 @@ class MapLayer extends egret.DisplayObjectContainer {
                 this.avatarContainer.setChildIndex(avatar, index);
             }
             index++;
+        }
+    }
+
+    public updateAvatarVisible(): void {
+        var childrenCount: number = this.avatarContainer.numChildren;
+        var index: number = 0;
+        var avatar: DragonbonesAvatar;
+        while (index < childrenCount) {
+            avatar = this.avatarContainer.getChildAt(index++) as DragonbonesAvatar;
+            avatar.father.visible = this.isInScreen(avatar.father.col, avatar.father.row, 0);
         }
     }
 }

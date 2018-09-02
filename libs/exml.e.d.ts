@@ -52,3 +52,5 @@ declare module skins{
 }
 declare class MenuSkin extends eui.Skin{
 }
+declare class ResultSkin extends eui.Skin{
+}
