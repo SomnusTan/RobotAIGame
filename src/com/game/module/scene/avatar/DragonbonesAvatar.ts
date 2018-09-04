@@ -18,7 +18,7 @@ class DragonbonesAvatar extends egret.Sprite {
         this._father = value;
     }
 
-    public get father():BaseAvatar{
+    public get father(): BaseAvatar {
         return this._father;
     }
 
@@ -28,6 +28,11 @@ class DragonbonesAvatar extends egret.Sprite {
             this._dragonbones = this._dragonbonesFactory.buildArmatureDisplay("armatureName");
             this.addChild(this._dragonbones);
         }
+    }
+
+    public set speed(value: number) {
+        if (this._dragonbones && this._dragonbones.animation)
+            this._dragonbones.animation.timeScale = value;
     }
 
     public playAction(action: string, playBack: FunctionVo = null): void {

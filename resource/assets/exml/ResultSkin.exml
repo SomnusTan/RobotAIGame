@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="ResultSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="img_winer_bg"/>
-	<e:Label id="txtWinName" text=" 胜利" y="98" size="30" anchorOffsetX="0" width="216" textAlign="center" bold="true" textColor="0x0cf4ff" horizontalCenter="0"/>
+	<e:Label id="txtWinName" text=" 胜利" y="277" size="30" anchorOffsetX="0" width="216" textAlign="center" bold="true" horizontalCenter="0" stroke="1" textColor="0x70e6ff"/>
+	<e:Label id="txtMemberName" text=" 胜利" y="310" size="26" anchorOffsetX="0" width="96" bold="true" horizontalCenter="-45" textColor="0x70e6ff"/>
+	<e:Label id="txtMemberNum" text=" 胜利" y="310" size="26" anchorOffsetX="0" width="96" bold="true" x="183" textAlign="right" textColor="0xf0ff00"/>
 </e:Skin>

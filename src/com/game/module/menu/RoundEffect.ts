@@ -14,6 +14,7 @@ class RoundEffect extends egret.DisplayObjectContainer {
         this._label.textColor = 0xFFFFFF;
         this._label.size = 26;
         this._label.italic = true;
+        this._label.bold=true;
         this.addChild(this._label);
 
     }
@@ -27,7 +28,7 @@ class RoundEffect extends egret.DisplayObjectContainer {
         this.x = Config.STAGE_WIDTH >> 1;
         this.y = Math.floor(Config.STAGE_HEIGHT * 0.35);
         this.scaleX = this.scaleY = 8;
-        egret.Tween.get(this).wait(200).to({ scaleX: 1, scaleY: 1, y: 28 }, 500, egret.Ease.quartInOut).call(this.hide, this);
+        egret.Tween.get(this).wait(200).to({ scaleX: 1, scaleY: 1, y: 47 }, 500, egret.Ease.quartInOut).call(this.hide, this);
     }
 
     public hide(): void {

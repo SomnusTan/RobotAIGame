@@ -57,6 +57,23 @@ class TeamVo {
         return str;
     }
 
+    public getLeftAvatarList(): string[] {
+        var nameStr: string = "";
+        var numStr: string = "";
+        var keys: any[] = this.teamList.keys;
+        keys.sort((n1: any, n2: any) => {
+            if (EnumAvatarType.getSortRank(n1) <= EnumAvatarType.getSortRank(n2))
+                return -1;
+            else
+                return 1;
+        })
+        for (var i: number = 0, len: number = keys.length; i < len; i++) {
+            nameStr += EnumAvatarType.getNameByType(keys[i]) + "\n";
+            numStr += this.teamList.get(keys[i]) + "\n";
+        }
+        return [nameStr, numStr];
+    }
+
     private getFullNum(num: number): string {
         if (num < 10)
             return "0" + num;

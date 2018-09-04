@@ -6,8 +6,6 @@ class Menu extends egret.Sprite {
 
     private _resultView: ResultUI;
 
-    private _btnMode: eui.Button;
-
     private MOUSE_MODE: string = "鼠标操作";
 
     private AUTO_MODE: string = "自动镜头";
@@ -21,37 +19,30 @@ class Menu extends egret.Sprite {
         this._view = new MenuUI();
         this.addChild(this._view);
 
-        this._btnMode = new eui.Button();
-        this._btnMode.skinName = "skins.ButtonSkin";
-        this._btnMode.label = this.AUTO_MODE;
-        this._btnMode.height = 40;
-        this._btnMode.x = 5;
-        this._btnMode.y = 5;
-        this.addChild(this._btnMode);
-
-        this._boxSpeed = new eui.box();
-        this._btnMode.skinName = "skins.ButtonSkin";
-        this._btnMode.label = this.AUTO_MODE;
-        this._btnMode.height = 40;
-        this._btnMode.x = 5;
-        this._btnMode.y = 5;
-        this.addChild(this._btnMode);
+        this._view.btnCamera.label = this.AUTO_MODE;
+        this._view.btnSpeed.label = "播放速度(x" + EnumSpeed.SPEED + ")"
 
         this._view.imgBlood1.mask = this._view.rectTeamMask1;
         this._view.imgBlood2.mask = this._view.rectTeamMask2;
     }
 
     public show(): void {
-        this._btnMode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeMode, this);
+        this._view.btnCamera.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeMode, this);
+        this._view.btnSpeed.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeSpeed, this);
         this.onResize();
     }
 
     public hide(): void {
     }
 
+    private onChangeSpeed(e: egret.TouchEvent): void {
+        EnumSpeed.addSpeed();
+        this._view.btnSpeed.label = "播放速度(x" + EnumSpeed.SPEED + ")"
+    }
+
     private onChangeMode(e: egret.TouchEvent): void {
         Config.isMouseMode = !Config.isMouseMode;
-        this._btnMode.label = Config.isMouseMode ? this.MOUSE_MODE : this.AUTO_MODE;
+        this._view.btnCamera.label = Config.isMouseMode ? this.MOUSE_MODE : this.AUTO_MODE;
     }
 
     public showRoundEffect(round: number): void {
@@ -62,7 +53,7 @@ class Menu extends egret.Sprite {
     }
 
     public onResize(): void {
-        this._view.x = Config.STAGE_WIDTH - this._view.width >> 1;
+        this._view.width = Config.STAGE_WIDTH;
     }
 
     public initInfo(teamName1: string, teamName2: string): void {
@@ -104,8 +95,10 @@ class Menu extends egret.Sprite {
         this._resultView.y = Config.STAGE_HEIGHT - this._resultView.height >> 1;
         this._resultView.alpha = 0;
         this._resultView.scaleX = this._resultView.scaleY = 0;
+        var list: string[] = team.getLeftAvatarList();
+        this._resultView.txtMemberName.text = list[0];
+        this._resultView.txtMemberNum.text = list[1];
         egret.Tween.get(this._resultView).to({ alpha: 1, scaleX: 1, scaleY: 1 }, 500, egret.Ease.backInOut);
-        // team.getLeftAvatarStr
     }
 
 

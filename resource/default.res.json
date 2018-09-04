@@ -1141,7 +1141,7 @@
 			"url": "assets/ui/ui.json",
 			"type": "sheet",
 			"name": "ui_json",
-			"subkeys": "img_blood,img_blood_bg,img_blue_right,img_bule_1,img_bule_bg_2,img_red_1,img_red_bg_1,img_red_left,img_title_bg,img_touxiang_1,img_touxiang_2,img_winer_bg"
+			"subkeys": "img_blood,img_blood_bg,img_blue_line,img_blue_right,img_btn,img_bule_1,img_bule_bg_2,img_red_1,img_red_bg_1,img_red_left,img_red_line,img_title_bg,img_touxiang_1,img_touxiang_2,img_winer_bg"
 		},
 		{
 			"url": "assets/image/UI_2048.jpg",
@@ -1227,6 +1227,16 @@
 			"url": "assets/effect/blow/NPC_blow_ske.json",
 			"type": "json",
 			"name": "NPC_blow_ske_json"
+		},
+		{
+			"url": "assets/exml/MenuSkin.exml",
+			"type": "bin",
+			"name": "MenuSkin_exml"
+		},
+		{
+			"url": "assets/exml/ResultSkin.exml",
+			"type": "bin",
+			"name": "ResultSkin_exml"
 		}
 	]
 }

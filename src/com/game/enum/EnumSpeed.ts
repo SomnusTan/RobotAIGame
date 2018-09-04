@@ -10,7 +10,7 @@ class EnumSpeed {
     /**死亡消失时间 */
     public static DEAD_DISAPPEAR_TIME: number = 2000;
     /**时间倍数 */
-    public static SPEED: number = 2;
+    public static SPEED: number = 1;
 
     /**
      * 每格移动时间
@@ -51,6 +51,7 @@ class EnumSpeed {
         this.SPEED *= 2
         if (this.SPEED > 8)
             this.SPEED = 1;
+        App.layer.mapLayer.updateRoleSpeed();
     }
 
 }

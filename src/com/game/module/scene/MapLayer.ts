@@ -332,4 +332,14 @@ class MapLayer extends egret.DisplayObjectContainer {
             avatar.father.visible = this.isInScreen(avatar.father.col, avatar.father.row, 0);
         }
     }
+
+    public updateRoleSpeed(): void {
+        var childrenCount: number = this.avatarContainer.numChildren;
+        var index: number = 0;
+        var avatar: DragonbonesAvatar;
+        while (index < childrenCount) {
+            avatar = this.avatarContainer.getChildAt(index++) as DragonbonesAvatar;
+            avatar.speed = EnumSpeed.SPEED;
+        }
+    }
 }
