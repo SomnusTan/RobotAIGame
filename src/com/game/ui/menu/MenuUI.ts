@@ -10,6 +10,7 @@ class MenuUI extends BaseUI {
 	public rectTeamMask2: eui.Rect;
 	public btnCamera: eui.Button;
 	public btnSpeed: eui.Button;
+	public btnOpenFile: eui.Button;
 
 	public constructor() {
 		super("MenuSkin");

@@ -204,7 +204,8 @@ class MapLayer extends egret.DisplayObjectContainer {
             var mapX: number = this.getRange(x, EnumMap.MAP_WIDTH - Config.MAP_SCREEN_WIDTH, 0);
             var mapY: number = this.getRange(y, EnumMap.MAP_HEIGHT - Config.MAP_SCREEN_HEIGHT, 0);
             var duration: number = Math.sqrt(Math.pow(mapX - this._mapRect.x, 2) + Math.pow(mapY - this._mapRect.y, 2)) / EnumSpeed.getMapMoveSpeed();
-
+            if (duration < 200)
+                duration = 200;
             egret.Tween.get(this._mapRect, { onChange: this.onUpdate, onChangeObj: this }).to({ x: mapX, y: mapY }, duration).call(callBack, callBackObj, callBackParams);
         }
     }

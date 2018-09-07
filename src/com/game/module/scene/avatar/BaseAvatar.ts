@@ -32,7 +32,7 @@ class BaseAvatar {
 
     protected _nameBar: NameBar;
 
-    protected _offY: number = -120;
+    protected _offY: number = -86;
 
     protected _x: number = 0;
 
@@ -56,7 +56,6 @@ class BaseAvatar {
         this._nameBar = new NameBar();
         // this._roleMovie = new MovieAvatar();
         this._roleMovie = new DragonbonesAvatar();
-        // this._roleMovie.setMcFactory(App.resource.getMcFactory("avatar1"));
         this._roleMovie.father = this;
     }
 

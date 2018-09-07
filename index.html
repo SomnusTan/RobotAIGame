@@ -21,7 +21,6 @@
         }
     </style>
 </head>
-
 <body>
     <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
          data-entry-class="Main"
@@ -34,7 +33,20 @@
          data-show-fps="false" data-show-log="false"
          data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
     </div>
+    <input type="file" id="files" multiple="multiple" style="display: none"/>
 <script>
+
+    // window.onload=function(){
+    //     var getFile =document.getElementById("files");
+    //     getFile.onchange=function(e){
+    //         var reader=new FileReader();
+    //         read.readAsText(getFile[0]);
+    //         //获取到文件以后就会返回一个对象，通过这个对象即可获取文件
+    //         console.log(e.currentTarget.files);//所有文件，返回的是一个数组
+    //         console.log(e.currentTarget.files[0].name)//文件名
+    //     }
+    // }
+
     var loadScript = function (list, callback) {
         var loaded = 0;
         var loadNext = function () {

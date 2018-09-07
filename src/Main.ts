@@ -70,7 +70,7 @@ class Main extends eui.UILayer {
         // button.x = Config.STAGE_WIDTH - button.width >> 1;
         // button.y = Config.STAGE_HEIGHT - button.height >> 1;
         // App.layer.menuLayer.addChild(button);
-        App.layer.mapLayer.once(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        // App.layer.mapLayer.once(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     }
 

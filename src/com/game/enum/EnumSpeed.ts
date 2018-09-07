@@ -1,6 +1,6 @@
 class EnumSpeed {
     /**每格移动速度 */
-    public static MOVE_NODE_TIME: number = 300;
+    public static MOVE_NODE_TIME: number = 200;
     /**步骤间隔 */
     public static STEP_DELAY: number = 100;
     /**创角间隔 */
@@ -23,7 +23,7 @@ class EnumSpeed {
      * 步骤间隔
      */
     public static getStepDelay(): number {
-        return this.STEP_DELAY / this.SPEED;
+        return this.STEP_DELAY// / this.SPEED;
     }
 
     /**
@@ -37,7 +37,10 @@ class EnumSpeed {
      * 地图移动每秒多少像素
      */
     public static getMapMoveSpeed(): number {
-        return this.MAP_MOVE_SPEED * this.SPEED;
+        if(this.SPEED>=4)
+            return this.MAP_MOVE_SPEED * 3;
+        else
+            return this.MAP_MOVE_SPEED * this.SPEED;
     }
 
     /**

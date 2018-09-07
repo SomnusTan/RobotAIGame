@@ -24,15 +24,32 @@ class Menu extends egret.Sprite {
 
         this._view.imgBlood1.mask = this._view.rectTeamMask1;
         this._view.imgBlood2.mask = this._view.rectTeamMask2;
+        (this._view.btnOpenFile.labelDisplay as eui.Label).size = 30;
     }
 
     public show(): void {
         this._view.btnCamera.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeMode, this);
         this._view.btnSpeed.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeSpeed, this);
+        this._view.btnOpenFile.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpenFile, this);
         this.onResize();
     }
 
     public hide(): void {
+    }
+
+    private onOpenFile(e: egret.TouchEvent): void {
+        var files: any = document.getElementById("files");
+        files.click();
+        files.addEventListener("change", (e) => {
+            console.log(files.files[0].name)
+            var reader = new FileReader();
+            reader.readAsText(files.files[0]);
+            reader.onload = (e) => {
+                this._view.btnOpenFile.visible = false;
+                App.layer.startMove();
+                App.data.parseLogData(reader.result);
+            }
+        })
     }
 
     private onChangeSpeed(e: egret.TouchEvent): void {
@@ -54,6 +71,7 @@ class Menu extends egret.Sprite {
 
     public onResize(): void {
         this._view.width = Config.STAGE_WIDTH;
+        this._view.btnOpenFile.y = Config.STAGE_HEIGHT - this._view.btnOpenFile.height >> 1;
     }
 
     public initInfo(teamName1: string, teamName2: string): void {

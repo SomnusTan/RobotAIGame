@@ -11,8 +11,9 @@ class EnumAvatarType {
     public static RANK_LIST: string[] = [EnumAvatarType.AI_BRAIN, EnumAvatarType.OVERLORD_SOLDIER, EnumAvatarType.ARMOUR_SOLDIER, EnumAvatarType.SLUNG_SHOT_SOLDIER];
 
     public static RES_LIST: string[] = [EnumAvatarType.SLUNG_SHOT_SOLDIER, EnumAvatarType.ARMOUR_SOLDIER, EnumAvatarType.OVERLORD_SOLDIER, EnumAvatarType.AI_BRAIN];
-
-    public static RES_SCALE_LIST: number[] = [0.25, 0.2, 0.3, 0.3];
+    /**角色缩放比例 */
+    // public static RES_SCALE_LIST: number[] = [0.25, 0.2, 0.3, 0.3];
+    public static RES_SCALE_LIST: number[] = [0.16, 0.13, 0.2, 0.2];
 
     /**
      * 通过类型获取名字

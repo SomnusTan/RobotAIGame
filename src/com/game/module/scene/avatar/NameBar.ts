@@ -5,7 +5,7 @@ class NameBar extends egret.DisplayObjectContainer {
 
     private _hpBarBg: egret.Bitmap;
 
-    private static WIDTH: number = 80;
+    private static WIDTH: number = 54;
 
     private static aScale9Grid: egret.Rectangle = new egret.Rectangle(3, 2, 2, 2);
 
@@ -32,20 +32,22 @@ class NameBar extends egret.DisplayObjectContainer {
         this._hpBar.x = -this._hpBar.width >> 1;
         this._hpBar.y = -this._hpBar.height - 1;
 
-        this._txtName = new egret.TextField();
-        this._txtName.stroke = 1;
-        this._txtName.size = 20;
-        this._txtName.textColor = style == 1 ? 0xffffff : 0xffff00;
-        this.addChild(this._txtName);
+        // this._txtName = new egret.TextField();
+        // this._txtName.stroke = 1;
+        // this._txtName.size = 20;
+        // this._txtName.textColor = style == 1 ? 0xffffff : 0xffff00;
+        // this.addChild(this._txtName);
     }
 
     /**
      * 初始化
      */
     public initInfo(name: string, hp: number, maxHp: number): void {
-        this._txtName.text = name;
-        this._txtName.x = -this._txtName.textWidth >> 1;
-        this._txtName.y = -this._hpBarBg.height - this._txtName.height - 2;
+        if(this._txtName){
+            this._txtName.text = name;
+            this._txtName.x = -this._txtName.textWidth >> 1;
+            this._txtName.y = -this._hpBarBg.height - this._txtName.height - 2;
+        }
         this.updateHp(hp, maxHp);
     }
 

@@ -31,8 +31,10 @@ class DragonbonesAvatar extends egret.Sprite {
     }
 
     public set speed(value: number) {
-        if (this._dragonbones && this._dragonbones.animation)
-            this._dragonbones.animation.timeScale = value;
+        if (this._dragonbones && this._dragonbones.animation && this._action) {
+            var speed: number = value > EnumAction.getActionHighestSpeed(this._action) ? EnumAction.getActionHighestSpeed(this._action) : value;
+            this._dragonbones.animation.timeScale = speed;
+        }
     }
 
     public playAction(action: string, playBack: FunctionVo = null): void {
@@ -42,8 +44,8 @@ class DragonbonesAvatar extends egret.Sprite {
             action = EnumAction.STAND;
         else if (this._father.vo.type == EnumAvatarType.OVERLORD_SOLDIER && action == EnumAction.STAND)
             action = EnumAction.MOVE;
-        this._dragonbones.animation.timeScale = EnumSpeed.SPEED;
         this._action = action;
+        this.speed = EnumSpeed.SPEED;
         this._playBack = playBack;
         if (EnumAction.LOOP_ACTION_LIST.indexOf(action) == -1) {
             this._dragonbones.armature.addEventListener(dragonBones.AnimationEvent.COMPLETE, this.onPlayComplete, this);
