@@ -39,7 +39,7 @@
 		"bin-debug/com/game/module/scene/avatar/BaseAvatar.js",
 		"bin-debug/com/game/module/scene/avatar/DragonbonesAvatar.js",
 		"bin-debug/com/game/module/scene/avatar/MovieAvatar.js",
-		"bin-debug/Config.js",
+		"bin-debug/com/game/module/scene/avatar/NameBar.js",
 		"bin-debug/com/game/module/scene/effect/BeHitEffect.js",
 		"bin-debug/com/game/module/scene/effect/DeadEffect.js",
 		"bin-debug/com/game/module/scene/map/MapMaskContainer.js",
@@ -67,6 +67,6 @@
 		"bin-debug/com/game/vo/step/StepRoleMoveVo.js",
 		"bin-debug/com/game/vo/step/StepRoundVo.js",
 		"bin-debug/com/game/vo/step/StepSeizeBaseVo.js",
-		"bin-debug/com/game/module/scene/avatar/NameBar.js"
+		"bin-debug/Config.js"
 	]
 }

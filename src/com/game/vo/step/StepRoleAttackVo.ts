@@ -67,7 +67,8 @@ class StepRoleAttackVo extends StepVo {
 			this._avatar.dir = EnumDirection.RIGHT;
 		this._avatar.playAction(EnumAction.ATTACK, new FunctionVo(this.end, this));
 		var skillData: any = EnumSkill.getSkillData(this._avatar.vo.type);
-		App.timer.doTimeOnce(this, skillData[0] / EnumSpeed.SPEED, this.dealyHit);
+		var speed:number = EnumSpeed.SPEED>2?2:EnumSpeed.SPEED;
+		App.timer.doTimeOnce(this, skillData[0] / speed, this.dealyHit);
 		//还要加攻击效果
 	}
 

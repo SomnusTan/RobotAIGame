@@ -17,7 +17,7 @@ class DeadEffect {
     public show(parent: egret.DisplayObjectContainer, x?: number, y?: number): void {
         if (parent)
             this.addChild(parent);
-        this._dragonbones.animation.timeScale = EnumSpeed.SPEED;
+        this._dragonbones.animation.timeScale = EnumSpeed.SPEED > 2 ? 2:EnumSpeed.SPEED;
         this._dragonbones.animation.gotoAndPlayByFrame("Effect_die_animation", 1, 1);
         this._dragonbones.armature.addEventListener(dragonBones.AnimationEvent.COMPLETE, this.onPlayComplete, this);
         if (x)

@@ -181,7 +181,7 @@ class MapLayer extends egret.DisplayObjectContainer {
      * @param row
      * @param range 
      */
-    public isInCenterArea(col: number, row: number, range: number = 2): boolean {
+    public isInCenterArea(col: number, row: number, range: number = 4): boolean {
         var x: number = MapUtil.getXByNodeX(col);
         var y: number = MapUtil.getYByNodeY(row);
         var offsetX: number = this._mapRect.width - range * EnumMap.MAP_NODE_WIDTH >> 1;

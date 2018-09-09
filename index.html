@@ -35,18 +35,6 @@
     </div>
     <input type="file" id="files" multiple="multiple" style="display: none"/>
 <script>
-
-    // window.onload=function(){
-    //     var getFile =document.getElementById("files");
-    //     getFile.onchange=function(e){
-    //         var reader=new FileReader();
-    //         read.readAsText(getFile[0]);
-    //         //获取到文件以后就会返回一个对象，通过这个对象即可获取文件
-    //         console.log(e.currentTarget.files);//所有文件，返回的是一个数组
-    //         console.log(e.currentTarget.files[0].name)//文件名
-    //     }
-    // }
-
     var loadScript = function (list, callback) {
         var loaded = 0;
         var loadNext = function () {
