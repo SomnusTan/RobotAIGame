@@ -171,8 +171,8 @@ class MapLayer extends egret.DisplayObjectContainer {
         var y: number = MapUtil.getYByNodeY(row);
         var offsetX: number = EnumMap.MAP_NODE_WIDTH * range;
         var offsetY: number = EnumMap.MAP_NODE_HEIGHT * range;
-        return x >= this._mapRect.x + offsetX && x <= this._mapRect.x + this._mapRect.width - offsetX
-            && y >= this._mapRect.y + offsetY && y <= this._mapRect.y + this._mapRect.height - offsetY;
+        return x >= this._mapRect.x + offsetX && x <= this._mapRect.x + this._mapRect.width - offsetX &&
+            y >= this._mapRect.y + offsetY && y <= this._mapRect.y + this._mapRect.height - offsetY;
     }
 
     /**
