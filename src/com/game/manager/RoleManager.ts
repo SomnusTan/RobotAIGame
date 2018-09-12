@@ -59,11 +59,16 @@ class RoleManager {
         return avatar;
     }
 
+    public getRoleTeam(teamId:number):HashMap{
+        return this._allRoleList.get(teamId) as HashMap;
+    }
+
     public removeRole(avatar: BaseAvatar): void {
         if (avatar) {
             (this._allRoleList.get(avatar.vo.teamId) as HashMap).remove(avatar.vo.roleId);
             avatar.dispose();
         }
+        App.menu.updateMiniMap();
     }
 
 }

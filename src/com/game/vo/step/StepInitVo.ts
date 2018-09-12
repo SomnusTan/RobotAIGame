@@ -55,6 +55,7 @@ class StepInitVo extends StepVo {
                 App.team.getTeamVo(robot.teamId).addAvatarNum(robot.robottype, 1);
                 App.menu.updateTeamInfo(App.team.getTeamVo(robot.teamId));
                 App.layer.mapLayer.updateAvatarDepth();
+                App.menu.updateMiniMap();
                 App.timer.doTimeOnce(thisObj, EnumSpeed.getCreateRoleDealy(), thisObj.createRole, [thisObj]);
             }
         }

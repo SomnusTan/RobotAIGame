@@ -8,17 +8,17 @@ class SeizeBaseEffect {
     }
 
     private init(): void {
-        var factory: dragonBones.EgretFactory = App.resource.getDragonFactory("gongpo");
-        this._dragonbones = factory.buildArmatureDisplay("shengli");
-        this._dragonbones.scaleX = this._dragonbones.scaleY = 0.7;
+        var factory: dragonBones.EgretFactory = App.resource.getDragonFactory("red_blue");
+        this._dragonbones = factory.buildArmatureDisplay("Armature");
+        // this._dragonbones.scaleX = this._dragonbones.scaleY = 0.7;
     }
 
-    public show(parent: egret.DisplayObjectContainer, x?: number, y?: number, callBack?: FunctionVo): void {
+    public show(teamId: number, parent: egret.DisplayObjectContainer, x?: number, y?: number, callBack?: FunctionVo): void {
         if (parent)
             this.addChild(parent);
         this._callBack = callBack;
         this._dragonbones.animation.timeScale = EnumSpeed.SPEED > 2 ? 2 : EnumSpeed.SPEED;
-        this._dragonbones.animation.gotoAndPlayByFrame("play", 1, 1);
+        this._dragonbones.animation.gotoAndPlayByFrame(teamId == 1 ? "blue" : "red", 1, 1);
         this._dragonbones.armature.addEventListener(dragonBones.AnimationEvent.COMPLETE, this.onPlayComplete, this);
         if (x)
             this._dragonbones.x = x;

@@ -31,7 +31,7 @@
 		</e:Group>
 	</e:Group>
 	<e:Group id="boxLine" y="265" left="0" right="0">
-		<e:Image y="18" source="imgLine_png" left="0" right="0" scale9Grid="7,4,631,6" anchorOffsetY="0" height="25"/>
+		<e:Image y="18" left="0" right="0" scale9Grid="7,4,631,6" anchorOffsetY="0" height="25" source="imgLine"/>
 		<e:Image y="0" source="img_red_line" left="0" visible="false"/>
 		<e:Image y="0" source="img_blue_line" right="0" visible="false"/>
 	</e:Group>

@@ -65,7 +65,7 @@ class StepSeizeBaseVo extends StepVo {
         if (this._targetIsAlive == 0) {
             this.deadCallBack();
         }
-        new SeizeBaseEffect().show(App.layer.alertLayer, Config.STAGE_WIDTH >> 1, Config.STAGE_HEIGHT >> 1, new FunctionVo(this.end, this));
+        new SeizeBaseEffect().show(this._targetTeamId, App.layer.alertLayer, Config.STAGE_WIDTH >> 1, Config.STAGE_HEIGHT >> 1, new FunctionVo(this.end, this));
     }
 
     public dispose(): void {

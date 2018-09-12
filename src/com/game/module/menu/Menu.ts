@@ -10,6 +10,8 @@ class Menu extends egret.Sprite {
 
     private AUTO_MODE: string = "自动镜头";
 
+    private _miniMap: MiniMap;
+
     public constructor() {
         super();
         this.init();
@@ -25,6 +27,10 @@ class Menu extends egret.Sprite {
         this._view.imgBlood1.mask = this._view.rectTeamMask1;
         this._view.imgBlood2.mask = this._view.rectTeamMask2;
         (this._view.btnOpenFile.labelDisplay as eui.Label).size = 30;
+
+        this._miniMap = new MiniMap();
+        this._view.addChild(this._miniMap);
+        this._miniMap.y = 108;
     }
 
     public show(): void {
@@ -72,6 +78,11 @@ class Menu extends egret.Sprite {
     public onResize(): void {
         this._view.width = Config.STAGE_WIDTH;
         this._view.btnOpenFile.y = Config.STAGE_HEIGHT - this._view.btnOpenFile.height >> 1;
+        this._miniMap.x = (Config.STAGE_WIDTH - this._miniMap.width >> 1) + 360;
+    }
+
+    public updateMiniMap(): void {
+        this._miniMap.updateAvatar();
     }
 
     public initInfo(teamName1: string, teamName2: string): void {
