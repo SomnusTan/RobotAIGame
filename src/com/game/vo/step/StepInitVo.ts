@@ -59,7 +59,8 @@ class StepInitVo extends StepVo {
             }
         }
         else {
-            thisObj.end();
+            new StartEffect().show(App.layer.alertLayer,Config.STAGE_WIDTH>>1,Config.STAGE_HEIGHT>>1,new FunctionVo(thisObj.end,thisObj));
+            // thisObj.end();
         }
     }
 

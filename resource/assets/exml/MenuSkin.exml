@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="MenuSkin" width="1032" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group y="4" horizontalCenter="0">
-		<e:Image source="img_touxiang_1" y="25" x="0"/>
-		<e:Image y="149" x="0" source="img_red_bg_1" height="110" scale9Grid="13,10,71,12"/>
-		<e:Image source="img_title_bg" y="31" x="146"/>
-		<e:Image y="149" x="927" source="img_bule_bg_2" scale9Grid="20,13,65,9" height="110"/>
-		<e:Image y="25" source="img_touxiang_2" x="921"/>
-		<e:Image y="50" x="165" source="img_red_left"/>
-		<e:Image y="50" x="603" source="img_blue_right"/>
-		<e:Label id="txtTeamName1" text=" " x="313" y="107" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
-		<e:Label id="txtTeamLeft1" text=" " x="0.5" y="156" size="18" anchorOffsetX="0" width="100" textColor="0x0cf4ff" lineSpacing="8" textAlign="right"/>
-		<e:Label id="txtTeamLeft2" text=" " x="928" y="156" size="18" anchorOffsetX="0" width="100" textColor="0x0cf4ff" lineSpacing="8" textAlign="right"/>
-		<e:Label id="txtRound" text="Round" y="43" size="26" italic="true" anchorOffsetX="0" width="156" textAlign="center" bold="true" x="438"/>
-		<e:Label id="txtTeamName2" text=" " x="566" y="107" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
-		<e:Group x="179" y="56">
-			<e:Image id="imgBlood1" y="0" x="0" source="img_red_1"/>
-			<e:Rect id="rectTeamMask1" width="231" height="20" y="0" fillAlpha="1" alpha="0.1" right="0"/>
+<e:Skin class="MenuSkin" width="1280" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group y="4" horizontalCenter="0" width="1280">
+		<e:Group x="0" y="5">
+			<e:Image source="img_touxiang_1" y="0" x="0"/>
+			<e:Image y="124" x="0" source="img_red_bg_1" height="130" scale9Grid="13,10,71,12" anchorOffsetY="0"/>
+			<e:Label id="txtTeamLeft1" text=" " x="-5" y="140" size="16" anchorOffsetX="0" width="100" textColor="0x0cf4ff" lineSpacing="12" textAlign="right"/>
 		</e:Group>
-		<e:Group x="617" y="56">
-			<e:Image id="imgBlood2" y="0" x="0" source="img_bule_1"/>
-			<e:Rect id="rectTeamMask2" width="231" height="20" y="0" fillAlpha="1" alpha="0.1" left="0"/>
+		<e:Group y="5" right="0">
+			<e:Image y="124" x="6" source="img_bule_bg_2" scale9Grid="20,13,65,9" height="130"/>
+			<e:Image y="0" source="img_touxiang_2" x="0"/>
+			<e:Label id="txtTeamLeft2" text=" " x="0" y="139" size="16" anchorOffsetX="0" width="100" textColor="0x0cf4ff" lineSpacing="12" textAlign="right"/>
 		</e:Group>
-		<e:Button id="btnCamera" label="自动镜头" x="284" y="0" skinName="MenuButtonSkin"/>
-		<e:Button id="btnSpeed" label="切换倍数(1倍)" x="566" y="0" skinName="MenuButtonSkin"/>
+		<e:Group y="0" horizontalCenter="0">
+			<e:Image source="img_title_bg" y="31" x="0"/>
+			<e:Image y="50" x="19" source="img_red_left"/>
+			<e:Image y="50" x="457" source="img_blue_right"/>
+			<e:Label id="txtTeamName1" text=" " x="167" y="107" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
+			<e:Label id="txtRound" text="Round" y="43" size="26" italic="true" anchorOffsetX="0" width="156" textAlign="center" bold="true" x="292"/>
+			<e:Label id="txtTeamName2" text=" " x="420" y="107" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
+			<e:Group x="33" y="56">
+				<e:Image id="imgBlood1" y="0" x="0" source="img_red_1"/>
+				<e:Rect id="rectTeamMask1" width="231" height="20" y="0" fillAlpha="1" alpha="0.1" right="0"/>
+			</e:Group>
+			<e:Group x="471" y="56">
+				<e:Image id="imgBlood2" y="0" x="0" source="img_bule_1"/>
+				<e:Rect id="rectTeamMask2" width="231" height="20" y="0" fillAlpha="1" alpha="0.1" left="0"/>
+			</e:Group>
+			<e:Button id="btnCamera" label="自动镜头" x="138" y="0" skinName="MenuButtonSkin"/>
+			<e:Button id="btnSpeed" label="切换倍数(1倍)" x="420" y="0" skinName="MenuButtonSkin"/>
+		</e:Group>
 	</e:Group>
-	<e:Image y="265" source="img_red_line" left="0" visible="false"/>
-	<e:Image y="265" source="img_blue_line" right="0" visible="false"/>
+	<e:Group id="boxLine" y="265" left="0" right="0">
+		<e:Image y="18" source="imgLine_png" left="0" right="0" scale9Grid="7,4,631,6" anchorOffsetY="0" height="25"/>
+		<e:Image y="0" source="img_red_line" left="0" visible="false"/>
+		<e:Image y="0" source="img_blue_line" right="0" visible="false"/>
+	</e:Group>
 	<e:Button id="btnOpenFile" label="开始游戏" y="414" skinName="MenuButtonSkin" horizontalCenter="11" height="60" width="230"/>
 </e:Skin>

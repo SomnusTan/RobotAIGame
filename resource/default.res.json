@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,juese_3_tex_png,juese_3_ske_json,juese_3_tex_json,juese_4_ske_json,juese_4_tex_json,juese_4_tex_png,NPC_blow_tex_png,NPC_blow_tex_json,NPC_blow_ske_json",
+			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,juese_3_tex_png,juese_3_ske_json,juese_3_tex_json,juese_4_ske_json,juese_4_tex_json,juese_4_tex_png,NPC_blow_tex_png,NPC_blow_tex_json,NPC_blow_ske_json,juese_5_ske_json,juese_5_tex_json,juese_5_tex_png,juese_6_ske_json,juese_6_tex_json,juese_6_tex_png,juese_7_ske_json,juese_7_tex_json,juese_7_tex_png,juese_8_ske_json,juese_8_tex_json,juese_8_tex_png,NXT_1_ske_json,NXT_1_tex_json,NXT_1_tex_png,gongpo_ske_json,gongpo_tex_json,gongpo_tex_png",
 			"name": "preload"
 		}
 	],
@@ -352,6 +352,101 @@
 			"url": "assets/map/map_9.png",
 			"type": "image",
 			"name": "map_9_png"
+		},
+		{
+			"url": "assets/avatar/avatar5/juese_5_tex.png",
+			"type": "image",
+			"name": "juese_5_tex_png"
+		},
+		{
+			"url": "assets/avatar/avatar6/juese_6_tex.png",
+			"type": "image",
+			"name": "juese_6_tex_png"
+		},
+		{
+			"url": "assets/avatar/avatar7/juese_7_tex.png",
+			"type": "image",
+			"name": "juese_7_tex_png"
+		},
+		{
+			"url": "assets/avatar/avatar8/juese_8_tex.png",
+			"type": "image",
+			"name": "juese_8_tex_png"
+		},
+		{
+			"url": "assets/avatar/avatar5/juese_5_ske.json",
+			"type": "json",
+			"name": "juese_5_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar5/juese_5_tex.json",
+			"type": "json",
+			"name": "juese_5_tex_json"
+		},
+		{
+			"url": "assets/avatar/avatar6/juese_6_ske.json",
+			"type": "json",
+			"name": "juese_6_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar7/juese_7_ske.json",
+			"type": "json",
+			"name": "juese_7_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar6/juese_6_tex.json",
+			"type": "json",
+			"name": "juese_6_tex_json"
+		},
+		{
+			"url": "assets/avatar/avatar7/juese_7_tex.json",
+			"type": "json",
+			"name": "juese_7_tex_json"
+		},
+		{
+			"url": "assets/avatar/avatar8/juese_8_ske.json",
+			"type": "json",
+			"name": "juese_8_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar8/juese_8_tex.json",
+			"type": "json",
+			"name": "juese_8_tex_json"
+		},
+		{
+			"url": "assets/effect/start/NXT_1_ske.json",
+			"type": "json",
+			"name": "NXT_1_ske_json"
+		},
+		{
+			"url": "assets/effect/start/NXT_1_tex.json",
+			"type": "json",
+			"name": "NXT_1_tex_json"
+		},
+		{
+			"url": "assets/effect/start/NXT_1_tex.png",
+			"type": "image",
+			"name": "NXT_1_tex_png"
+		},
+		{
+			"url": "assets/effect/win/gongpo_ske.json",
+			"type": "json",
+			"name": "gongpo_ske_json"
+		},
+		{
+			"url": "assets/effect/win/gongpo_tex.json",
+			"type": "json",
+			"name": "gongpo_tex_json"
+		},
+		{
+			"url": "assets/effect/win/gongpo_tex.png",
+			"type": "image",
+			"name": "gongpo_tex_png"
+		},
+		{
+			"url": "assets/image/imgLine.png",
+			"type": "image",
+			"name": "imgLine_png"
 		}
 	]
 }

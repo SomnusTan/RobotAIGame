@@ -38,9 +38,11 @@ class EnumAvatarType {
 
     /**
      * 获取资源ID
+     * @param type 角色类型
+     * @param teamId 队伍ID
      */
-    public static getResName(type: string): string {
-        return "juese_" + (this.RES_LIST.indexOf(type) + 1);
+    public static getResName(type: string, teamId: number): string {
+        return "juese_" + ((teamId - 1) * 4 + this.RES_LIST.indexOf(type) + 1);
     }
 
 }

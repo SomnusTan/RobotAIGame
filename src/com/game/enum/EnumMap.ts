@@ -11,6 +11,7 @@ class EnumMap {
 
     public static MAP_HEIGHT: number = 1500;
 
-    public static MAP_Y:number = 265//310;
+    // public static MAP_Y:number = 265//310;
+    public static MAP_Y:number = 310;
 
 }

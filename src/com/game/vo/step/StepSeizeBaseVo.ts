@@ -39,11 +39,11 @@ class StepSeizeBaseVo extends StepVo {
         console.log(this.toString());
         if (this._targetIsAlive == 1) {
             BeHitEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
-            this._targetAvatar.playAction(EnumAction.BE_HIT, new FunctionVo(this.end, this));
+            this._targetAvatar.playAction(EnumAction.BE_HIT, new FunctionVo(this.showEffect, this));
         }
         else {
             DeadEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
-            this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.deadCallBack, this));
+            this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.showEffect, this));
         }
         this._targetAvatar.vo.hp = this._targetHp;
         this._targetAvatar.updateHp();
@@ -57,9 +57,15 @@ class StepSeizeBaseVo extends StepVo {
             if (this._targetAvatar.action == EnumAction.DEAD) {
                 App.team.getTeamVo(this._targetAvatar.vo.teamId).removeAvatarNum(this._targetAvatar.vo.type, 1);
                 App.menu.updateTeamInfo(App.team.getTeamVo(this._targetAvatar.vo.teamId));
-                this.end();
             }
         }
+    }
+
+    private showEffect(): void {
+        if (this._targetIsAlive == 0) {
+            this.deadCallBack();
+        }
+        new SeizeBaseEffect().show(App.layer.alertLayer, Config.STAGE_WIDTH >> 1, Config.STAGE_HEIGHT >> 1, new FunctionVo(this.end, this));
     }
 
     public dispose(): void {
