@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,juese_3_tex_png,juese_3_ske_json,juese_3_tex_json,juese_4_ske_json,juese_4_tex_json,juese_4_tex_png,NPC_blow_tex_png,NPC_blow_tex_json,NPC_blow_ske_json,juese_5_ske_json,juese_5_tex_json,juese_5_tex_png,juese_6_ske_json,juese_6_tex_json,juese_6_tex_png,juese_7_ske_json,juese_7_tex_json,juese_7_tex_png,juese_8_ske_json,juese_8_tex_json,juese_8_tex_png,NXT_1_ske_json,NXT_1_tex_json,NXT_1_tex_png,red_blue_ske_json,red_blue_tex_json,red_blue_tex_png,hp_font_fnt,hp_font_png",
+			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,juese_3_tex_png,juese_3_ske_json,juese_3_tex_json,juese_4_ske_json,juese_4_tex_json,juese_4_tex_png,NPC_blow_tex_png,NPC_blow_tex_json,NPC_blow_ske_json,juese_5_ske_json,juese_5_tex_json,juese_5_tex_png,juese_6_ske_json,juese_6_tex_json,juese_6_tex_png,juese_7_ske_json,juese_7_tex_json,juese_7_tex_png,juese_8_ske_json,juese_8_tex_json,juese_8_tex_png,NXT_1_ske_json,NXT_1_tex_json,NXT_1_tex_png,red_blue_ske_json,red_blue_tex_json,red_blue_tex_png,hp_font_fnt,hp_font_png,Config_json",
 			"name": "preload"
 		}
 	],
@@ -452,6 +452,11 @@
 			"url": "assets/font/hp_font.png",
 			"type": "image",
 			"name": "hp_font_png"
+		},
+		{
+			"url": "assets/config/Config.json",
+			"type": "json",
+			"name": "Config_json"
 		}
 	]
 }

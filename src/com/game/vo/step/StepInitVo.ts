@@ -52,7 +52,8 @@ class StepInitVo extends StepVo {
                 if (robot.robottype == EnumAvatarType.AI_BRAIN) {
                     App.menu.initHp(robot.teamId, robot.hp, robot.hp);
                 }
-                // App.sound.playSound(robot.teamId==App.team.team1.id?EnumSound.CREATE1:EnumSound.CREATE2);
+                if(Config.playCreateSound)
+                    App.sound.playSound(robot.teamId==App.team.team1.id?EnumSound.CREATE1:EnumSound.CREATE2);
                 App.team.getTeamVo(robot.teamId).addAvatarNum(robot.robottype, 1);
                 App.menu.updateTeamInfo(App.team.getTeamVo(robot.teamId));
                 App.layer.mapLayer.updateAvatarDepth();

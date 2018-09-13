@@ -18,4 +18,8 @@ class Config {
     public static currentGameFps: number;
     /**是否鼠标模式 */
     public static isMouseMode: boolean = false;
+
+    public static playMoveSound: boolean = false;
+
+    public static playCreateSound: boolean = false;
 }

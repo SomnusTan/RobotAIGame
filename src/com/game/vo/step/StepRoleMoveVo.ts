@@ -66,7 +66,8 @@ class StepRoleMoveVo extends StepVo {
     private doAction(): void {
         this.showPathGrid();
         this.startMove();
-        // App.sound.playSound(EnumSound.MOVE[Math.floor(Math.random()*EnumSound.MOVE.length)]);
+        if(Config.playMoveSound)
+            App.sound.playSound(EnumSound.MOVE[Math.floor(Math.random()*EnumSound.MOVE.length)]);
     }
 
     private showPathGrid(): void {

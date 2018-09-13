@@ -30,7 +30,7 @@ class HpEffect extends eui.Group {
         // this._label.x = -this._label.width>>1;
         // this._label.y = -this._label.height>>1;
         this.alpha = 1;
-        egret.Tween.get(this._label).set({ alpha: 0, scaleX: 0.5, scaleY: 0.5 }).to({ alpha: 1, scaleX: 1, scaleY: 1 }, 200, egret.Ease.backInOut);
+        egret.Tween.get(this._label).set({ alpha: 0, scaleX: 0.1, scaleY: 0.1 }).to({ alpha: 1, scaleX: 1, scaleY: 1 }, 500, egret.Ease.backInOut);
         egret.Tween.get(this).to({ y: this.y - 30 }, 500, egret.Ease.backInOut).wait(500).to({ alpha: 0 }, 500).call(this.dispose, this);
     }
 
