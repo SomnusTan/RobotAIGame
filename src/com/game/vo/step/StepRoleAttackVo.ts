@@ -39,9 +39,10 @@ class StepRoleAttackVo extends StepVo {
 		super.exec();
 		this._avatar = App.role.getRole(this._teamId, this._roleid);
 		this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
-
+		this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
 		console.log(this.toString());
-
+		this._avatar.showName(true);
+		this._targetAvatar.showName(true);
 		if (App.layer.mapLayer.isInCenterArea(this._avatar.col, this._avatar.row)) {
 			this.showPathGrid();
 			this.startAttack();
@@ -82,6 +83,7 @@ class StepRoleAttackVo extends StepVo {
 			this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.deadCallBack, this));
 		}
 		this._targetAvatar.vo.hp = this._targetHp;
+		this._targetAvatar.playHpEffect(-this._dropHp);
 		this._targetAvatar.updateHp();
 		if (this._targetAvatar.vo.type == EnumAvatarType.AI_BRAIN) {
 			App.menu.updateHp(this._targetAvatar.vo.teamId, this._targetAvatar.vo.hp, this._targetAvatar.vo.maxHp);
@@ -93,6 +95,7 @@ class StepRoleAttackVo extends StepVo {
 			if (this._targetAvatar.action == EnumAction.DEAD) {
 				App.team.getTeamVo(this._targetAvatar.vo.teamId).removeAvatarNum(this._targetAvatar.vo.type, 1);
 				App.menu.updateTeamInfo(App.team.getTeamVo(this._targetAvatar.vo.teamId));
+				this._targetAvatar.showName(false);
 				this._targetAvatar = null;
 			}
 		}
@@ -101,6 +104,7 @@ class StepRoleAttackVo extends StepVo {
 	public dispose(): void {
 		super.dispose()
 		App.layer.mapLayer.clearGrid();
+		this._avatar.showName(false);
 		this._avatar = null;
 	}
 

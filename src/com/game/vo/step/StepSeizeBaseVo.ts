@@ -36,16 +36,24 @@ class StepSeizeBaseVo extends StepVo {
         this._avatar = App.role.getRole(this._teamId, this._roleid);
         this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
 
+        this._avatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
+        this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
+
         console.log(this.toString());
+        new SeizeBaseEffect().show(this._targetTeamId, App.layer.alertLayer, Config.STAGE_WIDTH >> 1, Config.STAGE_HEIGHT >> 1, new FunctionVo(this.updateHp, this));
+    }
+
+    private updateHp():void{
         if (this._targetIsAlive == 1) {
             BeHitEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
-            this._targetAvatar.playAction(EnumAction.BE_HIT, new FunctionVo(this.showEffect, this));
+            this._targetAvatar.playAction(EnumAction.BE_HIT, new FunctionVo(this.end, this));
         }
         else {
             DeadEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
-            this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.showEffect, this));
+            this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.deadCallBack, this));
         }
         this._targetAvatar.vo.hp = this._targetHp;
+        this._targetAvatar.playHpEffect(-this._dropHp);
         this._targetAvatar.updateHp();
         if (this._targetAvatar.vo.type == EnumAvatarType.AI_BRAIN) {
             App.menu.updateHp(this._targetAvatar.vo.teamId, this._targetAvatar.vo.hp, this._targetAvatar.vo.maxHp);
@@ -53,19 +61,11 @@ class StepSeizeBaseVo extends StepVo {
     }
 
     private deadCallBack(): void {
-        if (this._targetAvatar) {
-            if (this._targetAvatar.action == EnumAction.DEAD) {
-                App.team.getTeamVo(this._targetAvatar.vo.teamId).removeAvatarNum(this._targetAvatar.vo.type, 1);
-                App.menu.updateTeamInfo(App.team.getTeamVo(this._targetAvatar.vo.teamId));
-            }
+        if (this._targetAvatar&&this._targetIsAlive == 0) {
+            App.team.getTeamVo(this._targetAvatar.vo.teamId).removeAvatarNum(this._targetAvatar.vo.type, 1);
+            App.menu.updateTeamInfo(App.team.getTeamVo(this._targetAvatar.vo.teamId));
         }
-    }
-
-    private showEffect(): void {
-        if (this._targetIsAlive == 0) {
-            this.deadCallBack();
-        }
-        new SeizeBaseEffect().show(this._targetTeamId, App.layer.alertLayer, Config.STAGE_WIDTH >> 1, Config.STAGE_HEIGHT >> 1, new FunctionVo(this.end, this));
+        this.end();
     }
 
     public dispose(): void {

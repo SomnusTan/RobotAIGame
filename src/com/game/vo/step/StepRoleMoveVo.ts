@@ -49,6 +49,7 @@ class StepRoleMoveVo extends StepVo {
     public exec(): void {
         super.exec();
         this._avatar = App.role.getRole(this._teamId, this._roleid);
+        this._avatar.showName(true);
         console.log(this.toString());
         if (App.layer.mapLayer.isInScreen(this._oldCol, this._oldRow) && App.layer.mapLayer.isInScreen(this._targetCol, this._targetRow)) {
             this.doAction();
@@ -65,6 +66,7 @@ class StepRoleMoveVo extends StepVo {
     private doAction(): void {
         this.showPathGrid();
         this.startMove();
+        // App.sound.playSound(EnumSound.MOVE[Math.floor(Math.random()*EnumSound.MOVE.length)]);
     }
 
     private showPathGrid(): void {
@@ -95,6 +97,7 @@ class StepRoleMoveVo extends StepVo {
     public dispose(): void {
         App.layer.mapLayer.clearGrid();
         super.dispose()
+        this._avatar.showName(false);
         this._path = null;
         this._avatar = null;
     }

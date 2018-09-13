@@ -24,6 +24,7 @@ class SeizeBaseEffect {
             this._dragonbones.x = x;
         if (y)
             this._dragonbones.y = y;
+        App.sound.playSound(EnumSound.SEIZE_BASE);
     }
 
     private onPlayComplete(e: dragonBones.AnimationEvent): void {

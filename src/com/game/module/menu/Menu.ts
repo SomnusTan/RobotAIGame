@@ -119,6 +119,7 @@ class Menu extends egret.Sprite {
             this._resultView = new ResultUI();
             App.layer.menuLayer.addChild(this._resultView);
         }
+        App.sound.playSound(EnumSound.RESULT);
         this._resultView.txtWinName.text = team.name;
         this._resultView.x = Config.STAGE_WIDTH - this._resultView.width >> 1;
         this._resultView.y = Config.STAGE_HEIGHT - this._resultView.height >> 1;

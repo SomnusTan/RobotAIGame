@@ -1,12 +1,12 @@
 class StepAIDropVo extends StepVo {
 
     private _targetTeamId: number;
-	private _targetRoleId: number;
-	private _targetAvatar: BaseAvatar;
-	private _targetHp: number;
-	private _targetIsAlive: number;
+    private _targetRoleId: number;
+    private _targetAvatar: BaseAvatar;
+    private _targetHp: number;
+    private _targetIsAlive: number;
 
-	private _dropHp: number;
+    private _dropHp: number;
 
 
     public parse(time: string, jsonData: any): void {
@@ -27,7 +27,7 @@ class StepAIDropVo extends StepVo {
     public exec(): void {
         super.exec();
         this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
-
+        this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
         console.log(this.toString());
         if (this._targetIsAlive == 1) {
             BeHitEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
@@ -38,6 +38,7 @@ class StepAIDropVo extends StepVo {
             this._targetAvatar.playAction(EnumAction.DEAD, new FunctionVo(this.deadCallBack, this));
         }
         this._targetAvatar.vo.hp = this._targetHp;
+        this._targetAvatar.playHpEffect(-this._dropHp);
         this._targetAvatar.updateHp();
         if (this._targetAvatar.vo.type == EnumAvatarType.AI_BRAIN) {
             App.menu.updateHp(this._targetAvatar.vo.teamId, this._targetAvatar.vo.hp, this._targetAvatar.vo.maxHp);

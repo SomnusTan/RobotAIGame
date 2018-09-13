@@ -24,6 +24,7 @@ class DeadEffect {
             this._dragonbones.x = x;
         if (y)
             this._dragonbones.y = y;
+        App.sound.playSound(EnumSound.DEAD);
     }
 
     private onPlayComplete(e: dragonBones.AnimationEvent): void {
@@ -44,7 +45,7 @@ class DeadEffect {
     public dispose(): void {
         this._dragonbones.animation.stop();
         this.remove();
-
+        DeadEffect.recovery(this);
     }
 
     public static getEffect(): DeadEffect {
@@ -55,7 +56,7 @@ class DeadEffect {
         return new DeadEffect();
     }
 
-    public static restory(obj: DeadEffect): void {
+    public static recovery(obj: DeadEffect): void {
         if (obj && this._pool.indexOf(obj) == -1) {
             this._pool.push(obj);
         }

@@ -25,6 +25,7 @@ class StartEffect {
             this._dragonbones.x = x;
         if (y)
             this._dragonbones.y = y;
+        App.sound.playSound(EnumSound.CREATE1)
     }
 
     private onPlayComplete(e: dragonBones.AnimationEvent): void {
