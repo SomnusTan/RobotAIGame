@@ -14,6 +14,7 @@ class EnumAvatarType {
     /**角色缩放比例 */
     // public static RES_SCALE_LIST: number[] = [0.25, 0.2, 0.3, 0.3];
     public static RES_SCALE_LIST: number[] = [0.16, 0.13, 0.2, 0.2];
+    // public static RES_SCALE_LIST: number[] = [0.13, 0.1, 0.15, 0.15];
 
     /**
      * 通过类型获取名字
@@ -37,9 +38,11 @@ class EnumAvatarType {
 
     /**
      * 获取资源ID
+     * @param type 角色类型
+     * @param teamId 队伍ID
      */
-    public static getResName(type: string): string {
-        return "juese_" + (this.RES_LIST.indexOf(type) + 1);
+    public static getResName(type: string, teamId: number): string {
+        return "juese_" + ((teamId - 1) * 4 + this.RES_LIST.indexOf(type) + 1);
     }
 
 }

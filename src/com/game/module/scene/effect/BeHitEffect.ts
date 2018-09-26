@@ -17,13 +17,14 @@ class BeHitEffect {
     public show(parent: egret.DisplayObjectContainer, x?: number, y?: number): void {
         if (parent)
             this.addChild(parent);
-        this._dragonbones.animation.timeScale = EnumSpeed.SPEED > 2 ? 2:EnumSpeed.SPEED;
+        this._dragonbones.animation.timeScale = EnumSpeed.SPEED > 2 ? 2 : EnumSpeed.SPEED;
         this._dragonbones.animation.gotoAndPlayByFrame("Effect_hit_animation", 1, 1);
         this._dragonbones.armature.addEventListener(dragonBones.AnimationEvent.COMPLETE, this.onPlayComplete, this);
         if (x)
             this._dragonbones.x = x;
         if (y)
             this._dragonbones.y = y - 70;
+        App.sound.playSound(EnumSound.BE_HIT);
     }
 
     private onPlayComplete(e: dragonBones.AnimationEvent): void {
@@ -44,7 +45,7 @@ class BeHitEffect {
     public dispose(): void {
         this._dragonbones.animation.stop();
         this.remove();
-
+        BeHitEffect.recovery(this);
     }
 
     public static getEffect(): BeHitEffect {
@@ -55,7 +56,7 @@ class BeHitEffect {
         return new BeHitEffect();
     }
 
-    public static restory(obj: BeHitEffect): void {
+    public static recovery(obj: BeHitEffect): void {
         if (obj && this._pool.indexOf(obj) == -1) {
             this._pool.push(obj);
         }

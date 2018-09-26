@@ -20,7 +20,7 @@ class BaseAvatarVo {
 
     public set type(value: string) {
         this._type = value;
-        this.resName = EnumAvatarType.getResName(this._type)
+        this.resName = EnumAvatarType.getResName(this._type, this.teamId);
     }
     /**
      * 类型 EnumAvatarType

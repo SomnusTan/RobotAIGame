@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,juese_3_tex_png,juese_3_ske_json,juese_3_tex_json,juese_4_ske_json,juese_4_tex_json,juese_4_tex_png,NPC_blow_tex_png,NPC_blow_tex_json,NPC_blow_ske_json",
+			"keys": "component_json,ui_json,UI_2048_jpg,juese_1_tex_png,juese_1_tex_json,juese_1_ske_json,juese_2_tex_png,juese_2_ske_json,juese_2_tex_json,space_ship_png,juese_3_tex_png,juese_3_ske_json,juese_3_tex_json,juese_4_ske_json,juese_4_tex_json,juese_4_tex_png,NPC_blow_tex_png,NPC_blow_tex_json,NPC_blow_ske_json,juese_5_ske_json,juese_5_tex_json,juese_5_tex_png,juese_6_ske_json,juese_6_tex_json,juese_6_tex_png,juese_7_ske_json,juese_7_tex_json,juese_7_tex_png,juese_8_ske_json,juese_8_tex_json,juese_8_tex_png,NXT_1_ske_json,NXT_1_tex_json,NXT_1_tex_png,red_blue_ske_json,red_blue_tex_json,red_blue_tex_png,hp_font_fnt,hp_font_png,Config_json",
 			"name": "preload"
 		}
 	],
@@ -16,7 +16,7 @@
 			"url": "assets/ui/ui.json",
 			"type": "sheet",
 			"name": "ui_json",
-			"subkeys": "img_blood,img_blood_bg,img_blue_line,img_blue_right,img_btn,img_bule_1,img_bule_bg_2,img_red_1,img_red_bg_1,img_red_left,img_red_line,img_title_bg,img_touxiang_1,img_touxiang_2,img_winer_bg"
+			"subkeys": "imgLine,img_blood,img_blood_bg,img_blue_line,img_blue_right,img_btn,img_bule_1,img_bule_bg_2,img_red_1,img_red_bg_1,img_red_left,img_red_line,img_title_bg,img_touxiang_1,img_touxiang_2,img_winer_bg"
 		},
 		{
 			"url": "assets/image/UI_2048.jpg",
@@ -122,11 +122,6 @@
 			"url": "assets/map/map_10.png",
 			"type": "image",
 			"name": "map_10_png"
-		},
-		{
-			"url": "assets/map/map_100.png",
-			"type": "image",
-			"name": "map_100_png"
 		},
 		{
 			"url": "assets/map/map_11.png",
@@ -334,64 +329,9 @@
 			"name": "map_48_png"
 		},
 		{
-			"url": "assets/map/map_49.png",
-			"type": "image",
-			"name": "map_49_png"
-		},
-		{
 			"url": "assets/map/map_5.png",
 			"type": "image",
 			"name": "map_5_png"
-		},
-		{
-			"url": "assets/map/map_50.png",
-			"type": "image",
-			"name": "map_50_png"
-		},
-		{
-			"url": "assets/map/map_51.png",
-			"type": "image",
-			"name": "map_51_png"
-		},
-		{
-			"url": "assets/map/map_52.png",
-			"type": "image",
-			"name": "map_52_png"
-		},
-		{
-			"url": "assets/map/map_53.png",
-			"type": "image",
-			"name": "map_53_png"
-		},
-		{
-			"url": "assets/map/map_54.png",
-			"type": "image",
-			"name": "map_54_png"
-		},
-		{
-			"url": "assets/map/map_55.png",
-			"type": "image",
-			"name": "map_55_png"
-		},
-		{
-			"url": "assets/map/map_56.png",
-			"type": "image",
-			"name": "map_56_png"
-		},
-		{
-			"url": "assets/map/map_57.png",
-			"type": "image",
-			"name": "map_57_png"
-		},
-		{
-			"url": "assets/map/map_58.png",
-			"type": "image",
-			"name": "map_58_png"
-		},
-		{
-			"url": "assets/map/map_59.png",
-			"type": "image",
-			"name": "map_59_png"
 		},
 		{
 			"url": "assets/map/map_6.png",
@@ -399,109 +339,9 @@
 			"name": "map_6_png"
 		},
 		{
-			"url": "assets/map/map_60.png",
-			"type": "image",
-			"name": "map_60_png"
-		},
-		{
-			"url": "assets/map/map_61.png",
-			"type": "image",
-			"name": "map_61_png"
-		},
-		{
-			"url": "assets/map/map_62.png",
-			"type": "image",
-			"name": "map_62_png"
-		},
-		{
-			"url": "assets/map/map_63.png",
-			"type": "image",
-			"name": "map_63_png"
-		},
-		{
-			"url": "assets/map/map_64.png",
-			"type": "image",
-			"name": "map_64_png"
-		},
-		{
-			"url": "assets/map/map_65.png",
-			"type": "image",
-			"name": "map_65_png"
-		},
-		{
-			"url": "assets/map/map_66.png",
-			"type": "image",
-			"name": "map_66_png"
-		},
-		{
-			"url": "assets/map/map_67.png",
-			"type": "image",
-			"name": "map_67_png"
-		},
-		{
-			"url": "assets/map/map_68.png",
-			"type": "image",
-			"name": "map_68_png"
-		},
-		{
-			"url": "assets/map/map_69.png",
-			"type": "image",
-			"name": "map_69_png"
-		},
-		{
 			"url": "assets/map/map_7.png",
 			"type": "image",
 			"name": "map_7_png"
-		},
-		{
-			"url": "assets/map/map_70.png",
-			"type": "image",
-			"name": "map_70_png"
-		},
-		{
-			"url": "assets/map/map_71.png",
-			"type": "image",
-			"name": "map_71_png"
-		},
-		{
-			"url": "assets/map/map_72.png",
-			"type": "image",
-			"name": "map_72_png"
-		},
-		{
-			"url": "assets/map/map_73.png",
-			"type": "image",
-			"name": "map_73_png"
-		},
-		{
-			"url": "assets/map/map_74.png",
-			"type": "image",
-			"name": "map_74_png"
-		},
-		{
-			"url": "assets/map/map_75.png",
-			"type": "image",
-			"name": "map_75_png"
-		},
-		{
-			"url": "assets/map/map_76.png",
-			"type": "image",
-			"name": "map_76_png"
-		},
-		{
-			"url": "assets/map/map_77.png",
-			"type": "image",
-			"name": "map_77_png"
-		},
-		{
-			"url": "assets/map/map_78.png",
-			"type": "image",
-			"name": "map_78_png"
-		},
-		{
-			"url": "assets/map/map_79.png",
-			"type": "image",
-			"name": "map_79_png"
 		},
 		{
 			"url": "assets/map/map_8.png",
@@ -509,109 +349,114 @@
 			"name": "map_8_png"
 		},
 		{
-			"url": "assets/map/map_80.png",
-			"type": "image",
-			"name": "map_80_png"
-		},
-		{
-			"url": "assets/map/map_81.png",
-			"type": "image",
-			"name": "map_81_png"
-		},
-		{
-			"url": "assets/map/map_82.png",
-			"type": "image",
-			"name": "map_82_png"
-		},
-		{
-			"url": "assets/map/map_83.png",
-			"type": "image",
-			"name": "map_83_png"
-		},
-		{
-			"url": "assets/map/map_84.png",
-			"type": "image",
-			"name": "map_84_png"
-		},
-		{
-			"url": "assets/map/map_85.png",
-			"type": "image",
-			"name": "map_85_png"
-		},
-		{
-			"url": "assets/map/map_86.png",
-			"type": "image",
-			"name": "map_86_png"
-		},
-		{
-			"url": "assets/map/map_87.png",
-			"type": "image",
-			"name": "map_87_png"
-		},
-		{
-			"url": "assets/map/map_88.png",
-			"type": "image",
-			"name": "map_88_png"
-		},
-		{
-			"url": "assets/map/map_89.png",
-			"type": "image",
-			"name": "map_89_png"
-		},
-		{
 			"url": "assets/map/map_9.png",
 			"type": "image",
 			"name": "map_9_png"
 		},
 		{
-			"url": "assets/map/map_90.png",
+			"url": "assets/avatar/avatar5/juese_5_tex.png",
 			"type": "image",
-			"name": "map_90_png"
+			"name": "juese_5_tex_png"
 		},
 		{
-			"url": "assets/map/map_91.png",
+			"url": "assets/avatar/avatar6/juese_6_tex.png",
 			"type": "image",
-			"name": "map_91_png"
+			"name": "juese_6_tex_png"
 		},
 		{
-			"url": "assets/map/map_92.png",
+			"url": "assets/avatar/avatar7/juese_7_tex.png",
 			"type": "image",
-			"name": "map_92_png"
+			"name": "juese_7_tex_png"
 		},
 		{
-			"url": "assets/map/map_93.png",
+			"url": "assets/avatar/avatar8/juese_8_tex.png",
 			"type": "image",
-			"name": "map_93_png"
+			"name": "juese_8_tex_png"
 		},
 		{
-			"url": "assets/map/map_94.png",
-			"type": "image",
-			"name": "map_94_png"
+			"url": "assets/avatar/avatar5/juese_5_ske.json",
+			"type": "json",
+			"name": "juese_5_ske_json"
 		},
 		{
-			"url": "assets/map/map_95.png",
-			"type": "image",
-			"name": "map_95_png"
+			"url": "assets/avatar/avatar5/juese_5_tex.json",
+			"type": "json",
+			"name": "juese_5_tex_json"
 		},
 		{
-			"url": "assets/map/map_96.png",
-			"type": "image",
-			"name": "map_96_png"
+			"url": "assets/avatar/avatar6/juese_6_ske.json",
+			"type": "json",
+			"name": "juese_6_ske_json"
 		},
 		{
-			"url": "assets/map/map_97.png",
-			"type": "image",
-			"name": "map_97_png"
+			"url": "assets/avatar/avatar7/juese_7_ske.json",
+			"type": "json",
+			"name": "juese_7_ske_json"
 		},
 		{
-			"url": "assets/map/map_98.png",
-			"type": "image",
-			"name": "map_98_png"
+			"url": "assets/avatar/avatar6/juese_6_tex.json",
+			"type": "json",
+			"name": "juese_6_tex_json"
 		},
 		{
-			"url": "assets/map/map_99.png",
+			"url": "assets/avatar/avatar7/juese_7_tex.json",
+			"type": "json",
+			"name": "juese_7_tex_json"
+		},
+		{
+			"url": "assets/avatar/avatar8/juese_8_ske.json",
+			"type": "json",
+			"name": "juese_8_ske_json"
+		},
+		{
+			"url": "assets/avatar/avatar8/juese_8_tex.json",
+			"type": "json",
+			"name": "juese_8_tex_json"
+		},
+		{
+			"url": "assets/effect/start/NXT_1_ske.json",
+			"type": "json",
+			"name": "NXT_1_ske_json"
+		},
+		{
+			"url": "assets/effect/start/NXT_1_tex.json",
+			"type": "json",
+			"name": "NXT_1_tex_json"
+		},
+		{
+			"url": "assets/effect/start/NXT_1_tex.png",
 			"type": "image",
-			"name": "map_99_png"
+			"name": "NXT_1_tex_png"
+		},
+		{
+			"url": "assets/effect/win/red_blue_ske.json",
+			"type": "json",
+			"name": "red_blue_ske_json"
+		},
+		{
+			"url": "assets/effect/win/red_blue_tex.json",
+			"type": "json",
+			"name": "red_blue_tex_json"
+		},
+		{
+			"url": "assets/effect/win/red_blue_tex.png",
+			"type": "image",
+			"name": "red_blue_tex_png"
+		},
+		{
+			"url": "assets/font/hp_font.fnt",
+			"type": "font",
+			"name": "hp_font_fnt"
+		},
+		{
+			"url": "assets/font/hp_font.png",
+			"type": "image",
+			"name": "hp_font_png"
+		},
+		{
+			"url": "assets/config/Config.json",
+			"type": "json",
+			"name": "Config_json"
 		}
 	]
 }

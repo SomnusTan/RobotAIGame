@@ -7,10 +7,11 @@ class EnumMap {
 
     public static MAP_TILE_HEIGHT: number = 256;
 
-    public static MAP_WIDTH: number = 2500;
+    public static MAP_WIDTH: number = 2000;
 
-    public static MAP_HEIGHT: number = 2500;
+    public static MAP_HEIGHT: number = 1500;
 
-    public static MAP_Y:number = 265//310;
+    // public static MAP_Y:number = 265//310;
+    public static MAP_Y:number = 310;
 
 }

@@ -19,6 +19,8 @@ class App {
     public static team: TeamManager;
     /**主菜单 */
     public static menu: Menu;
+    /**声音管理器 */
+    public static sound: MusicManager;
 
 
     public static init(stage: egret.Stage): void {
@@ -34,7 +36,12 @@ class App {
         this.resource = new ResManager();
         this.team = new TeamManager();
         this.layer = new MainLayer();
+        this.sound = new MusicManager();
         this.stage.addChild(this.layer);
+
+        var data: any = RES.getRes("Config_json");
+        Config.playMoveSound = data.moveSound;
+        Config.playCreateSound = data.createSound;
     }
 
     private static onResize(e?: egret.Event): void {

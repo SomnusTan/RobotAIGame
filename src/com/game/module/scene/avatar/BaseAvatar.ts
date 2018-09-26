@@ -75,8 +75,17 @@ class BaseAvatar {
         this.scale = EnumAvatarType.RES_SCALE_LIST[EnumAvatarType.RES_LIST.indexOf(this._vo.type)];//0.2;
     }
 
-    public playEffect(): void {
+    public showName(value: boolean, showTime: number = 0): void {
+        if (this._nameBar) {
+            this._nameBar.showName(value);
+            if (value && showTime > 0) {
+                App.timer.doTimeOnce(this, showTime, this.showName, [false]);
+            }
+        }
+    }
 
+    public playHpEffect(num: number): void {
+        HpEffect.getEffect().show(num.toString(), App.layer.mapLayer.effectContainer, this.x, this.y + this._offY);
     }
 
     public playAction(action: string, playBack: FunctionVo = null): void {
@@ -86,6 +95,7 @@ class BaseAvatar {
     public updateHp(): void {
         this._nameBar.updateHp(this._vo.hp, this._vo.maxHp);
     }
+
 
     public setGrid(col: number, row: number): void {
         this._col = col;

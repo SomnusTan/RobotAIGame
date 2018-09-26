@@ -52,14 +52,18 @@ class StepInitVo extends StepVo {
                 if (robot.robottype == EnumAvatarType.AI_BRAIN) {
                     App.menu.initHp(robot.teamId, robot.hp, robot.hp);
                 }
+                if(Config.playCreateSound)
+                    App.sound.playSound(robot.teamId==App.team.team1.id?EnumSound.CREATE1:EnumSound.CREATE2);
                 App.team.getTeamVo(robot.teamId).addAvatarNum(robot.robottype, 1);
                 App.menu.updateTeamInfo(App.team.getTeamVo(robot.teamId));
                 App.layer.mapLayer.updateAvatarDepth();
+                App.menu.updateMiniMap();
                 App.timer.doTimeOnce(thisObj, EnumSpeed.getCreateRoleDealy(), thisObj.createRole, [thisObj]);
             }
         }
         else {
-            thisObj.end();
+            new StartEffect().show(App.layer.alertLayer,Config.STAGE_WIDTH>>1,Config.STAGE_HEIGHT>>1,new FunctionVo(thisObj.end,thisObj));
+            // thisObj.end();
         }
     }
 

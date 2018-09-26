@@ -11,6 +11,8 @@ class EnumSpeed {
     public static DEAD_DISAPPEAR_TIME: number = 2000;
     /**时间倍数 */
     public static SPEED: number = 1;
+    /**名字显示时间 */
+    public static SHOW_NAME_TIME: number = 1000;
 
     /**
      * 每格移动时间
@@ -37,7 +39,7 @@ class EnumSpeed {
      * 地图移动每秒多少像素
      */
     public static getMapMoveSpeed(): number {
-        if(this.SPEED>=4)
+        if (this.SPEED >= 4)
             return this.MAP_MOVE_SPEED * 3;
         else
             return this.MAP_MOVE_SPEED * this.SPEED;

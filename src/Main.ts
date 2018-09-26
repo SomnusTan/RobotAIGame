@@ -6,10 +6,14 @@ class Main extends eui.UILayer {
 
         egret.lifecycle.onPause = () => {
             egret.ticker.pause();
+            if (App.sound)
+                App.sound.isCloseBgm = true;
         }
 
         egret.lifecycle.onResume = () => {
             egret.ticker.resume();
+            if (App.sound)
+                App.sound.isCloseBgm = false;
         }
 
         //inject the custom material parser
