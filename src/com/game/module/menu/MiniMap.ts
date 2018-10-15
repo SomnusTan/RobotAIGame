@@ -19,10 +19,10 @@ class MiniMap extends eui.Group {
         var col: number = EnumMap.MAP_WIDTH / EnumMap.MAP_NODE_WIDTH;
         var row: number = EnumMap.MAP_HEIGHT / EnumMap.MAP_NODE_HEIGHT;
         var i: number;
-        this._gridMap.graphics.beginFill(0,0.2);
+        this._gridMap.graphics.beginFill(0,0.5);
         this._gridMap.graphics.drawRect(0, 0, this.gridW * col, this.gridH * row);
         this._gridMap.graphics.endFill();
-        this._gridMap.graphics.lineStyle(1, 0xffffff, 0.1);
+        this._gridMap.graphics.lineStyle(1, 0xffffff, 0.2);
         for (i = 0; i <= row; i++) {
             this._gridMap.graphics.moveTo(0, this.gridH * i);
             this._gridMap.graphics.lineTo(this.gridW * col, this.gridH * i);

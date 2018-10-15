@@ -10,6 +10,9 @@ class MenuUI extends BaseUI {
 	public rectTeamMask2: eui.Rect;
 	public btnCamera: eui.Button;
 	public btnSpeed: eui.Button;
+	public txtBlood1: eui.Label;
+	public txtBlood2: eui.Label;
+	public boxMoveEffect: eui.CheckBox;
 	public boxLine: eui.Group;
 	public btnOpenFile: eui.Button;
 

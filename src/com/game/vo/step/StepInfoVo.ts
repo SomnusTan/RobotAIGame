@@ -19,7 +19,13 @@ class StepInfoVo extends StepVo {
         App.team.team2.reset();
         App.team.team2.dir = this._jsonData.player2dir;
         App.team.team2.name = this._jsonData.player2name;
-        App.menu.initInfo(App.team.team1.name,App.team.team2.name);
+        App.menu.initInfo(App.team.team1.name, App.team.team2.name);
         this.end();
+    }
+
+    public end(): void {
+        if (Config.isShowInitInfo == false) {
+            super.end();
+        }
     }
 }

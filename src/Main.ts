@@ -69,13 +69,31 @@ class Main extends eui.UILayer {
         menu.show();
         App.layer.mapLayer.initMap();
         App.layer.initImage();
-        // let button = new eui.Button();
-        // button.label = "Click!";
-        // button.x = Config.STAGE_WIDTH - button.width >> 1;
-        // button.y = Config.STAGE_HEIGHT - button.height >> 1;
-        // App.layer.menuLayer.addChild(button);
-        // App.layer.mapLayer.once(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
-        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        var logURL: string = this.getURL("logURL");
+        if (logURL) {
+            Config.isShowInitInfo = true;
+            App.layer.startMove();
+            RES.getResByUrl("resource/log/" + logURL + ".log", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
+        }
+    }
+
+    private getURL(key: string): string {
+        if (window.location) {
+            let search = location.search;
+            if (search == "") {
+                return null;
+            }
+            search = search.slice(1);
+            let searchArr = search.split("&");
+            let length = searchArr.length;
+            for (let i: number = 0; i < length; i++) {
+                let str = searchArr[i];
+                let arr = str.split("=");
+                if (arr[0] == key) {
+                    return arr[1];
+                }
+            }
+        }
     }
 
     /**
@@ -83,8 +101,6 @@ class Main extends eui.UILayer {
      * Click the button
      */
     private onButtonClick(e: egret.TouchEvent) {
-        // DeadEffect.getEffect().show(App.layer.alertLayer, e.stageX, e.stageY);
-        // return;
         App.layer.startMove();
         RES.getResByUrl("resource/log/oplog_1535731215-3184c11c-d266-4f1d-8793-8861e980a308.log", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
     }

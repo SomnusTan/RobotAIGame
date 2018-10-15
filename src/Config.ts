@@ -22,4 +22,6 @@ class Config {
     public static playMoveSound: boolean = false;
 
     public static playCreateSound: boolean = false;
+    /**是否显示初始化信息就停止 */
+    public static isShowInitInfo: boolean = false;
 }

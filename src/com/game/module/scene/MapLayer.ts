@@ -11,6 +11,8 @@ class MapLayer extends egret.DisplayObjectContainer {
     public effectContainer: MapMaskContainer;
     /**血条名字层 */
     public barContainer: egret.DisplayObjectContainer;
+    /**血条名字层 */
+    public shadowContainer: egret.DisplayObjectContainer;
 
     /**地图底（不动） */
     private _mapBg: eui.Image;
@@ -51,6 +53,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         this.mapContainer = new MapMaskContainer();
         this.mapGridContainer = new MapMaskContainer();
         this.mapLineContainer = new MapMaskContainer();
+        this.shadowContainer = new egret.DisplayObjectContainer();
         this.avatarContainer = new egret.DisplayObjectContainer();
         this.effectContainer = new MapMaskContainer();
         this.barContainer = new egret.DisplayObjectContainer();
@@ -60,6 +63,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         this.addChild(this.mapGridContainer.maskSp);
         this.addChild(this.mapLineContainer);
         this.addChild(this.mapLineContainer.maskSp);
+        this.addChild(this.shadowContainer);
         this.addChild(this.avatarContainer);
         this.addChild(this.effectContainer);
         this.addChild(this.effectContainer.maskSp);
@@ -225,6 +229,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         this.avatarContainer.x = x;
         this.effectContainer.x = x;
         this.barContainer.x = x;
+        this.shadowContainer.x = x;
 
         this.mapContainer.y = y;
         this.mapGridContainer.y = y;
@@ -232,6 +237,7 @@ class MapLayer extends egret.DisplayObjectContainer {
         this.avatarContainer.y = y;
         this.effectContainer.y = y;
         this.barContainer.y = y;
+        this.shadowContainer.y = y;
         this.updateAvatarVisible();
     }
 

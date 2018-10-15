@@ -32,6 +32,8 @@ class BaseAvatar {
 
     protected _nameBar: NameBar;
 
+    protected _shadow: egret.Shape;
+
     protected _offY: number = -86;
 
     protected _x: number = 0;
@@ -54,6 +56,7 @@ class BaseAvatar {
 
     private init(): void {
         this._nameBar = new NameBar();
+        this.initShadow();
         // this._roleMovie = new MovieAvatar();
         this._roleMovie = new DragonbonesAvatar();
         this._roleMovie.father = this;
@@ -73,6 +76,15 @@ class BaseAvatar {
         this._nameBar.initInfo(/*App.team.getTeamVo(this._vo.teamId).name + */this._vo.name, this._vo.hp, this._vo.maxHp);
         this.playAction(EnumAction.STAND);
         this.scale = EnumAvatarType.RES_SCALE_LIST[EnumAvatarType.RES_LIST.indexOf(this._vo.type)];//0.2;
+    }
+
+    private initShadow(): void {
+        var matrix: egret.Matrix = new egret.Matrix();
+        matrix.createGradientBox(40, 20, 0, -20, -10);
+        this._shadow = new egret.Shape();
+        this._shadow.graphics.beginGradientFill(egret.GradientType.RADIAL, [0, 0], [1, 0.1], [0, 255], matrix);
+        this._shadow.graphics.drawEllipse(-20, -10, 40, 20);
+        this._shadow.graphics.endFill();
     }
 
     public showName(value: boolean, showTime: number = 0): void {
@@ -127,6 +139,7 @@ class BaseAvatar {
         this._col = MapUtil.getNodeXByX(this._x);
         this._roleMovie.x = this._x;
         this._nameBar.x = this._x;
+        this._shadow.x = this._x;
     }
 
     public set dir(value: number) {
@@ -146,6 +159,7 @@ class BaseAvatar {
         this._roleMovie.y = this._y;
         // this._nameBar.y = this._y + Math.floor(this._offY * this._scale);
         this._nameBar.y = this._y + this._offY;
+        this._shadow.y = this._y;
     }
 
     public get y(): number {
@@ -161,6 +175,7 @@ class BaseAvatar {
             this._visible = value;
             this._nameBar.visible = this._visible;
             this._roleMovie.visible = this._visible;
+            this._shadow.visible = this._visible;
         }
     }
 
@@ -177,12 +192,15 @@ class BaseAvatar {
 
     public show(): void {
         App.layer.mapLayer.barContainer.addChild(this._nameBar);
+        App.layer.mapLayer.shadowContainer.addChild(this._shadow);
         App.layer.mapLayer.avatarContainer.addChild(this._roleMovie);
     }
 
     public remove(): void {
         this._nameBar.remove();
         this._roleMovie.remove();
+        if (this._shadow.parent)
+            this._shadow.parent.removeChild(this._shadow);
     }
 
     public dispose(): void {
@@ -194,6 +212,12 @@ class BaseAvatar {
         if (this._nameBar) {
             this._nameBar.dispose();
             this._nameBar = null;
+        }
+        if (this._shadow) {
+            if (this._shadow.parent)
+                this._shadow.parent.removeChild(this._shadow);
+            this._shadow.graphics.clear();
+            this._shadow = null;
         }
         this._vo = null;
     }

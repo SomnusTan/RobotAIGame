@@ -28,15 +28,19 @@ class Menu extends egret.Sprite {
         this._view.imgBlood2.mask = this._view.rectTeamMask2;
         (this._view.btnOpenFile.labelDisplay as eui.Label).size = 30;
 
+        this._view.boxMoveEffect.selected = Config.playMoveSound;
+
         this._miniMap = new MiniMap();
         this._view.addChild(this._miniMap);
         this._miniMap.y = 108;
+
     }
 
     public show(): void {
         this._view.btnCamera.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeMode, this);
         this._view.btnSpeed.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeSpeed, this);
         this._view.btnOpenFile.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpenFile, this);
+        this._view.boxMoveEffect.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeMoveSound, this);
         this.onResize();
     }
 
@@ -44,18 +48,30 @@ class Menu extends egret.Sprite {
     }
 
     private onOpenFile(e: egret.TouchEvent): void {
-        var files: any = document.getElementById("files");
-        files.click();
-        files.addEventListener("change", (e) => {
-            console.log(files.files[0].name)
-            var reader = new FileReader();
-            reader.readAsText(files.files[0]);
-            reader.onload = (e) => {
-                this._view.btnOpenFile.visible = false;
-                App.layer.startMove();
-                App.data.parseLogData(reader.result);
-            }
-        })
+        if (Config.isShowInitInfo) {
+            this._view.btnOpenFile.visible = false;
+            App.data.execNextStep();
+            App.sound.playBgmSound(EnumSound.BGM);
+        }
+        else {
+            var files: any = document.getElementById("files");
+            files.click();
+            files.addEventListener("change", (e) => {
+                console.log(files.files[0].name)
+                var reader = new FileReader();
+                reader.readAsText(files.files[0]);
+                reader.onload = (e) => {
+                    this._view.btnOpenFile.visible = false;
+                    App.layer.startMove();
+                    App.data.parseLogData(reader.result);
+                    App.sound.playBgmSound(EnumSound.BGM);
+                }
+            })
+        }
+    }
+
+    private onChangeMoveSound(e: egret.TouchEvent): void {
+        Config.playMoveSound = this._view.boxMoveEffect.selected;
     }
 
     private onChangeSpeed(e: egret.TouchEvent): void {
@@ -97,12 +113,14 @@ class Menu extends egret.Sprite {
 
     public initHp(team: number, hp: number, max: number): void {
         this._view["rectTeamMask" + team].scaleX = hp / max;
+        this._view["txtBlood" + team].text = hp + "/" + max;
     }
 
     public updateHp(team: number, hp: number, max: number): void {
         // this._view["rectTeamMask" + team].scaleX  =  hp / max
         egret.Tween.removeTweens(this._view["rectTeamMask" + team]);
         egret.Tween.get(this._view["rectTeamMask" + team]).to({ scaleX: hp / max }, 500);
+        this._view["txtBlood" + team].text = hp + "/" + max;
     }
 
     public updateTeamInfo(vo: TeamVo): void {

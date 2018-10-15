@@ -18,7 +18,6 @@ class DataManager {
      * 解析配置数据
      */
     public parseLogData(data: string): void {
-        App.sound.playBgmSound(EnumSound.BGM);
         this._tempList = data.split("\n");
         this._index = 0;
         this._count = this._tempList.length;

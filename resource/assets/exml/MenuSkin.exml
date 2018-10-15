@@ -28,6 +28,9 @@
 			</e:Group>
 			<e:Button id="btnCamera" label="自动镜头" x="138" y="0" skinName="MenuButtonSkin"/>
 			<e:Button id="btnSpeed" label="切换倍数(1倍)" x="420" y="0" skinName="MenuButtonSkin"/>
+			<e:Label id="txtBlood1" text=" " y="56" size="20" anchorOffsetX="0" width="156" textAlign="center" x="70.5" stroke="1" italic="true"/>
+			<e:Label id="txtBlood2" text=" " y="56" size="20" anchorOffsetX="0" width="156" textAlign="center" x="508.5" stroke="1" italic="true"/>
+			<e:CheckBox id="boxMoveEffect" label="行走音效" x="607" y="2" selected="true"/>
 		</e:Group>
 	</e:Group>
 	<e:Group id="boxLine" y="265" left="0" right="0">

@@ -62,6 +62,12 @@ class MusicManager {
 		}
 	}
 
+	public get isBgmPlaying():boolean{
+		if(this._currentBackBgmSound&&this._currentBackBgmSound.isPlaying)
+			return true;
+		return false;
+	}
+
 
 	/**
 	 * 播放背景音乐
@@ -178,9 +184,9 @@ class MusicManager {
 	private _currentBackBgmSound: MusicBgmItem;
 	private _currentBgmId: string;
 	/**当前音效音量 */
-	private _effectVolume: number = 1;
+	private _effectVolume: number = 0.7;
 	/**当前背景音乐音量 */
-	private _bgmVolume: number = 0.6;
+	private _bgmVolume: number = 1;
 	/**是否关闭背景音乐 */
 	private _isCloseBgm: boolean = false;
 	/**是否播放音效 */
