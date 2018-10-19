@@ -11,6 +11,8 @@ class TeamVo {
     public dir: string;
     /**布局消耗 */
     public costcoin: number;
+    /**满员字符串 */
+    public srcNumStr: string;
 
     public teamList: HashMap = new HashMap();
 
@@ -33,12 +35,25 @@ class TeamVo {
     public removeAvatarNum(roleType: string, num: number = 1): void {
         if (this.teamList.has(roleType)) {
             num = this.teamList.get(roleType) - num;
-            if (num <= 0) {
-                this.teamList.remove(roleType);
-            }
-            else {
-                this.teamList.put(roleType, num);
-            }
+            this.teamList.put(roleType, num);
+        }
+    }
+
+    /**
+     * 保存满员数量字符串
+     */
+    public saveSrcNumStr(): void {
+        var nameStr: string = "";
+        this.srcNumStr = "";
+        var keys: any[] = this.teamList.keys;
+        keys.sort((n1: any, n2: any) => {
+            if (EnumAvatarType.getSortRank(n1) <= EnumAvatarType.getSortRank(n2))
+                return -1;
+            else
+                return 1;
+        })
+        for (var i: number = 0, len: number = keys.length; i < len; i++) {
+            this.srcNumStr += this.teamList.get(keys[i]) + "\n";
         }
     }
 

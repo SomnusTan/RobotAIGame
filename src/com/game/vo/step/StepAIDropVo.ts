@@ -29,6 +29,16 @@ class StepAIDropVo extends StepVo {
         this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
         this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
         console.log(this.toString());
+
+        if (App.layer.mapLayer.isInCenterArea(this._targetAvatar.col, this._targetAvatar.row)) {
+            this.doAction();
+        }
+        else {
+            App.layer.mapLayer.moveCamera(this._targetAvatar.col, this._targetAvatar.row, this.doAction, this);
+        }
+    }
+
+    private doAction(): void {
         if (this._targetIsAlive == 1) {
             BeHitEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);
             this._targetAvatar.playAction(EnumAction.BE_HIT, new FunctionVo(this.end, this));

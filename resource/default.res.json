@@ -16,7 +16,7 @@
 			"url": "assets/ui/ui.json",
 			"type": "sheet",
 			"name": "ui_json",
-			"subkeys": "imgLine,img_blood,img_blood_bg,img_blue_line,img_blue_right,img_btn,img_bule_1,img_bule_bg_2,img_red_1,img_red_bg_1,img_red_left,img_red_line,img_title_bg,img_touxiang_1,img_touxiang_2,img_winer_bg"
+			"subkeys": "imgLine,img_blood,img_blood_bg,img_blue_line,img_blue_right,img_btn,img_bule_1,img_bule_bg_2,img_loser_bg,img_red_1,img_red_bg_1,img_red_left,img_red_line,img_title_bg,img_touxiang_1,img_touxiang_2,img_winer_bg"
 		},
 		{
 			"url": "assets/image/UI_2048.jpg",

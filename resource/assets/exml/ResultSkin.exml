@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="ResultSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="img_winer_bg"/>
-	<e:Label id="txtWinName" text=" 胜利" y="277" size="30" anchorOffsetX="0" width="216" textAlign="center" bold="true" horizontalCenter="0" stroke="1" textColor="0x70e6ff"/>
-	<e:Label id="txtMemberName" text=" 胜利" y="310" size="26" anchorOffsetX="0" width="96" bold="true" horizontalCenter="-45" textColor="0x70e6ff"/>
-	<e:Label id="txtMemberNum" text=" 胜利" y="310" size="26" anchorOffsetX="0" width="96" bold="true" x="183" textAlign="right" textColor="0xf0ff00"/>
+	<e:Group id="boxWiner" x="182" y="282" anchorOffsetX="182" anchorOffsetY="282">
+		<e:Image source="img_winer_bg" x="0" y="0"/>
+		<e:Group x="60" y="208">
+			<e:Rect width="250" height="30" x="0" y="0" fillAlpha="0.3" ellipseWidth="10" ellipseHeight="10"/>
+			<e:Label text="名称" y="5" size="22" anchorOffsetX="0" width="96" textColor="0xffffff" x="16" textAlign="center"/>
+			<e:Label text="剩余" y="5" size="22" anchorOffsetX="0" width="67" x="113" textColor="0xffffff" textAlign="center"/>
+			<e:Label text="原有" y="5" size="22" anchorOffsetX="0" width="67" x="180" textColor="0xffffff" textAlign="center"/>
+		</e:Group>
+		<e:Label id="txtWinMemberNum" text="10" y="243" size="22" anchorOffsetX="0" width="67" bold="true" x="240" textColor="0xF0FF00" textAlign="center" lineSpacing="8"/>
+		<e:Label id="txtWinName" text=" 胜利" y="171" size="30" anchorOffsetX="0" width="334" textAlign="center" bold="true" textColor="0xffffff" x="16"/>
+		<e:Label text="剩余血量" y="367" size="28" anchorOffsetX="0" width="216" textAlign="center" bold="true" textColor="0xFFFFFF" x="74"/>
+		<e:Label id="txtWinLeftBlood" text="3000" y="399" size="28" anchorOffsetX="0" width="216" textAlign="center" bold="true" textColor="0xf0ff00" strokeColor="0x000000" x="74"/>
+		<e:Label id="txtWinMemberName" text="AI大脑" y="243" size="22" anchorOffsetX="0" width="96" bold="true" textColor="0xFFFFFF" x="76" textAlign="center" lineSpacing="8"/>
+		<e:Label id="txtWinMemberLeftNum" text="10" y="243" size="22" anchorOffsetX="0" width="67" bold="true" x="173" textColor="0xF0FF00" textAlign="center" lineSpacing="8"/>
+	</e:Group>
+	<e:Group id="boxLoser" x="582" y="282" anchorOffsetX="182" anchorOffsetY="282">
+		<e:Image x="0" y="0" source="img_loser_bg"/>
+		<e:Group x="60" y="208">
+			<e:Rect width="250" height="30" x="0" y="0" fillAlpha="0.3" ellipseWidth="10" ellipseHeight="10"/>
+			<e:Label text="名称" y="5" size="22" anchorOffsetX="0" width="96" textColor="0xFFFFFF" x="16" textAlign="center"/>
+			<e:Label text="剩余" y="5" size="22" anchorOffsetX="0" width="67" x="113" textColor="0xFFFFFF" textAlign="center"/>
+			<e:Label text="原有" y="5" size="22" anchorOffsetX="0" width="67" x="180" textColor="0xFFFFFF" textAlign="center"/>
+		</e:Group>
+		<e:Label id="txtLostName" text=" 胜利" y="171" size="30" anchorOffsetX="0" width="334" textAlign="center" bold="true" textColor="0xFFFFFF" x="16"/>
+		<e:Label text="剩余血量" y="367" size="28" anchorOffsetX="0" width="216" textAlign="center" bold="true" textColor="0xFFFFFF" x="74"/>
+		<e:Label id="txtLostLeftBlood" text="3000" y="399" size="28" anchorOffsetX="0" width="216" textAlign="center" bold="true" textColor="0xF0FF00" strokeColor="0x000000" x="74"/>
+		<e:Label id="txtLostMemberName" text=" 胜利" y="243" size="22" anchorOffsetX="0" width="96" bold="true" textColor="0xFFFFFF" x="76" textAlign="center" lineSpacing="8"/>
+		<e:Label id="txtLostMemberLeftNum" text="10" y="243" size="22" anchorOffsetX="0" width="67" bold="true" x="173" textColor="0xF0FF00" textAlign="center" lineSpacing="8"/>
+		<e:Label id="txtLostMemberNum" text="10" y="243" size="22" anchorOffsetX="0" width="67" bold="true" x="240" textColor="0xF0FF00" textAlign="center" lineSpacing="8"/>
+	</e:Group>
 </e:Skin>

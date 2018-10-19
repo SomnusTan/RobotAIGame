@@ -1,28 +1,30 @@
 {
+    "projectName": "ui",
     "options": {
-        "useExtension": 0,
-        "layoutGap": 1,
         "extend": 0,
         "layoutMath": "1",
-        "sizeMode": "free"
+        "sizeMode": "free",
+        "useExtension": 0,
+        "layoutGap": 1
     },
     "files": [
+        "./images/img_red_bg_1.png",
+        "./images/img_red_1.png",
+        "./images/img_loser_bg.png",
+        "./images/img_bule_bg_2.png",
+        "./images/img_bule_1.png",
+        "./images/img_btn.png",
+        "./images/img_blue_right.png",
         "./images/img_blue_line.png",
         "./images/img_blood_bg.png",
         "./images/img_blood.png",
+        "./images/imgLine.png",
         "./images/img_winer_bg.png",
         "./images/img_touxiang_2.png",
         "./images/img_touxiang_1.png",
         "./images/img_title_bg.png",
         "./images/img_red_line.png",
-        "./images/img_red_left.png",
-        "./images/img_red_bg_1.png",
-        "./images/img_red_1.png",
-        "./images/img_bule_bg_2.png",
-        "./images/img_bule_1.png",
-        "./images/img_btn.png",
-        "./images/img_blue_right.png"
+        "./images/img_red_left.png"
     ],
-    "version": 5,
-    "projectName": "ui"
+    "version": 5
 }

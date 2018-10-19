@@ -15,9 +15,9 @@
 			<e:Image source="img_title_bg" y="31" x="0"/>
 			<e:Image y="50" x="19" source="img_red_left"/>
 			<e:Image y="50" x="457" source="img_blue_right"/>
-			<e:Label id="txtTeamName1" text=" " x="167" y="107" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
+			<e:Label id="txtTeamName1" text=" " x="147" y="107" size="24" italic="true" anchorOffsetX="0" width="195" textAlign="center"/>
 			<e:Label id="txtRound" text="Round" y="43" size="26" italic="true" anchorOffsetX="0" width="156" textAlign="center" bold="true" x="292"/>
-			<e:Label id="txtTeamName2" text=" " x="420" y="107" size="24" italic="true" anchorOffsetX="0" width="156" textAlign="center"/>
+			<e:Label id="txtTeamName2" text=" " x="401" y="107" size="24" italic="true" anchorOffsetX="0" width="195" textAlign="center"/>
 			<e:Group x="33" y="56">
 				<e:Image id="imgBlood1" y="0" x="0" source="img_red_1"/>
 				<e:Rect id="rectTeamMask1" width="231" height="20" y="0" fillAlpha="1" alpha="0.1" right="0"/>

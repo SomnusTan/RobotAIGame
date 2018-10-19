@@ -111,16 +111,18 @@ class Menu extends egret.Sprite {
         this._view.txtRound.text = "Round " + round;
     }
 
-    public initHp(team: number, hp: number, max: number): void {
-        this._view["rectTeamMask" + team].scaleX = hp / max;
-        this._view["txtBlood" + team].text = hp + "/" + max;
+    public initHp(teamId: number, hp: number, max: number): void {
+        this._view["rectTeamMask" + teamId].scaleX = hp / max;
+        this._view["txtBlood" + teamId].text = hp + "/" + max;
     }
 
-    public updateHp(team: number, hp: number, max: number): void {
+    public updateHp(teamId: number, hp: number, max: number): void {
         // this._view["rectTeamMask" + team].scaleX  =  hp / max
-        egret.Tween.removeTweens(this._view["rectTeamMask" + team]);
-        egret.Tween.get(this._view["rectTeamMask" + team]).to({ scaleX: hp / max }, 500);
-        this._view["txtBlood" + team].text = hp + "/" + max;
+        egret.Tween.removeTweens(this._view["rectTeamMask" + teamId]);
+        egret.Tween.get(this._view["rectTeamMask" + teamId]).to({ scaleX: hp / max }, 500);
+        this._view["txtBlood" + teamId].text = hp + "/" + max;
+        var team: TeamVo = App.team.getTeamVo(teamId);
+        team.hp = hp;
     }
 
     public updateTeamInfo(vo: TeamVo): void {
@@ -131,22 +133,39 @@ class Menu extends egret.Sprite {
     /**
      * 显示结算
      */
-    public showResult(winTeamId: number): void {
-        var team: TeamVo = App.team.getTeamVo(winTeamId);
+    public showResult(winTeamId: number, loseTeamId: number): void {
         if (this._resultView == null) {
             this._resultView = new ResultUI();
-            App.layer.menuLayer.addChild(this._resultView);
+            this._resultView.x = Config.STAGE_WIDTH >> 1;
+            this._resultView.y = Config.STAGE_HEIGHT >> 1;
         }
+        App.layer.menuLayer.addChild(this._resultView);
         App.sound.playSound(EnumSound.RESULT);
+        var team: TeamVo = App.team.getTeamVo(winTeamId);
         this._resultView.txtWinName.text = team.name;
-        this._resultView.x = Config.STAGE_WIDTH - this._resultView.width >> 1;
-        this._resultView.y = Config.STAGE_HEIGHT - this._resultView.height >> 1;
-        this._resultView.alpha = 0;
-        this._resultView.scaleX = this._resultView.scaleY = 0;
         var list: string[] = team.getLeftAvatarList();
-        this._resultView.txtMemberName.text = list[0];
-        this._resultView.txtMemberNum.text = list[1];
-        egret.Tween.get(this._resultView).to({ alpha: 1, scaleX: 1, scaleY: 1 }, 500, egret.Ease.backInOut);
+        this._resultView.txtWinMemberName.text = list[0];
+        this._resultView.txtWinMemberLeftNum.text = list[1];
+        this._resultView.txtWinMemberNum.text = team.srcNumStr;
+        this._resultView.txtWinLeftBlood.text = team.hp.toString();
+
+        team = App.team.getTeamVo(loseTeamId);
+        this._resultView.txtLostName.text = team.name;
+        list = team.getLeftAvatarList();
+        this._resultView.txtLostMemberName.text = list[0];
+        this._resultView.txtLostMemberLeftNum.text = list[1];
+        this._resultView.txtLostMemberNum.text = team.srcNumStr;
+        this._resultView.txtLostLeftBlood.text = team.hp.toString();
+
+        this._resultView.boxWiner.x = 0;
+        this._resultView.boxWiner.y = 0;
+        this._resultView.boxWiner.scaleX = this._resultView.boxWiner.scaleY = 3;
+        this._resultView.boxWiner.alpha = 1;
+        egret.Tween.get(this._resultView.boxWiner).to({ alpha: 1, scaleX: 1, scaleY: 1 }, 600, egret.Ease.backInOut).to({ x: -300 }, 1000, egret.Ease.backInOut);
+        this._resultView.boxLoser.x = 300;
+        this._resultView.boxLoser.y = 0;
+        this._resultView.boxLoser.alpha = 0;
+        egret.Tween.get(this._resultView.boxLoser).wait(2000).to({ alpha: 1 }, 1000);
     }
 
 
