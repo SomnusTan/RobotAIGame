@@ -40,7 +40,7 @@ class StepRoleAttackVo extends StepVo {
 		this._avatar = App.role.getRole(this._teamId, this._roleid);
 		this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
 		this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
-		console.log(this.toString());
+		GameLog.log(this.toString());
 		this._avatar.showName(true);
 		this._targetAvatar.showName(true);
 		if (App.layer.mapLayer.isInCenterArea(this._avatar.col, this._avatar.row)) {

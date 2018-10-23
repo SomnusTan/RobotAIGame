@@ -7,7 +7,7 @@ class FunctionApply {
 			try {
 				return this.execute(method, thisArg, args);
 			} catch (e) {
-				console.log(e.stack);
+				GameLog.log(e.stack);
 			}
 			return undefined;
 		}

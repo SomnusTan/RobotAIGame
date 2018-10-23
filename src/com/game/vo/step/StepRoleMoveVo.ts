@@ -50,7 +50,7 @@ class StepRoleMoveVo extends StepVo {
         super.exec();
         this._avatar = App.role.getRole(this._teamId, this._roleid);
         this._avatar.showName(true);
-        console.log(this.toString());
+        GameLog.log(this.toString());
         if (App.layer.mapLayer.isInScreen(this._oldCol, this._oldRow) && App.layer.mapLayer.isInScreen(this._targetCol, this._targetRow)) {
             this.doAction();
         }

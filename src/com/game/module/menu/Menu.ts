@@ -57,12 +57,12 @@ class Menu extends egret.Sprite {
             var files: any = document.getElementById("files");
             files.click();
             files.addEventListener("change", (e) => {
-                console.log(files.files[0].name)
+                GameLog.log(files.files[0].name)
                 var reader = new FileReader();
                 reader.readAsText(files.files[0]);
                 reader.onload = (e) => {
                     this._view.btnOpenFile.visible = false;
-                    App.layer.startMove();
+                    // App.layer.startMove();
                     App.data.parseLogData(reader.result);
                     App.sound.playBgmSound(EnumSound.BGM);
                 }

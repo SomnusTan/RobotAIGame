@@ -50,7 +50,7 @@ class RoleManager {
         if (this._allRoleList.has(teamId) == false)
             this._allRoleList.put(teamId, new HashMap());
         var hashMap: HashMap = this._allRoleList.get(teamId);
-        console.log("创建：" + EnumAvatarType.getNameByType(type), avatar.x, avatar.y);
+        GameLog.log("创建：" + EnumAvatarType.getNameByType(type), avatar.x, avatar.y);
         hashMap.put(roleid, avatar);
     }
 

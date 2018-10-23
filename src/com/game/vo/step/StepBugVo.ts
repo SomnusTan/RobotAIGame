@@ -33,7 +33,7 @@ class StepBugVo extends StepVo {
         super.exec();
         this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
         this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
-        console.log(this.toString());
+        GameLog.log(this.toString());
         App.sound.playSound(EnumSound.BUG);
         if (this._targetIsAlive == 1) {
             // BeHitEffect.getEffect().show(App.layer.mapLayer.effectContainer, this._targetAvatar.x, this._targetAvatar.y);

@@ -34,7 +34,7 @@ class ObjectPool {
 				this._poolDict.put(data, data);
 			}
 			else {
-				console.log("有重复的对象入池");
+				GameLog.log("有重复的对象入池");
 			}
 		}
 		else {

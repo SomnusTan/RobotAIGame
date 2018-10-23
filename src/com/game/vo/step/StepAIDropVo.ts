@@ -28,7 +28,7 @@ class StepAIDropVo extends StepVo {
         super.exec();
         this._targetAvatar = App.role.getRole(this._targetTeamId, this._targetRoleId);
         this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
-        console.log(this.toString());
+        GameLog.log(this.toString());
 
         if (App.layer.mapLayer.isInCenterArea(this._targetAvatar.col, this._targetAvatar.row)) {
             this.doAction();

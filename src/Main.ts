@@ -23,7 +23,7 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
 
         this.runGame().catch(e => {
-            console.log(e);
+            GameLog.log(e);
         })
     }
 
@@ -68,11 +68,11 @@ class Main extends eui.UILayer {
         App.layer.menuLayer.addChild(menu);
         menu.show();
         App.layer.mapLayer.initMap();
-        App.layer.initImage();
+        // App.layer.initImage();
         var logURL: string = this.getURL("logURL");
         if (logURL) {
             Config.isShowInitInfo = true;
-            App.layer.startMove();
+            // App.layer.startMove();
             RES.getResByUrl("resource/log/" + logURL + ".log", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
         }
     }
@@ -101,7 +101,7 @@ class Main extends eui.UILayer {
      * Click the button
      */
     private onButtonClick(e: egret.TouchEvent) {
-        App.layer.startMove();
+        // App.layer.startMove();
         RES.getResByUrl("resource/log/oplog_1535731215-3184c11c-d266-4f1d-8793-8861e980a308.log", App.data.parseLogData, App.data, RES.ResourceItem.TYPE_TEXT);
     }
 

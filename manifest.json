@@ -59,6 +59,7 @@
 		"bin-debug/com/game/ui/menu/MenuUI.js",
 		"bin-debug/com/game/ui/result/ResultUI.js",
 		"bin-debug/com/game/utils/FunctionApply.js",
+		"bin-debug/com/game/utils/GameLog.js",
 		"bin-debug/com/game/utils/HashMap.js",
 		"bin-debug/com/game/utils/MapUtil.js",
 		"bin-debug/com/game/utils/ObjectPool.js",

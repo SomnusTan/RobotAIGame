@@ -22,7 +22,7 @@ class DataManager {
         this._index = 0;
         this._count = this._tempList.length;
         this._stepList = [];
-        console.log("日志长度为", this._tempList.length);
+        GameLog.log("日志长度为", this._tempList.length);
         this.parseLogByStep();
 
     }
@@ -32,7 +32,7 @@ class DataManager {
      */
     private parseLogByStep(): void {
         var startTime: number = egret.getTimer();
-        console.log("开始解析：", startTime);
+        GameLog.log("开始解析：", startTime);
         var str: string;
         for (; this._index < this._count; this._index++) {
             str = this._tempList[this._index];
@@ -45,7 +45,7 @@ class DataManager {
                 }
             }
         }
-        console.log("解析完成：", egret.getTimer());
+        GameLog.log("解析完成：", egret.getTimer());
         this.checkStart();
         this._tempList.length = 0;
         this._tempList = null;
@@ -57,7 +57,7 @@ class DataManager {
     private checkStart(): void {
         if (!App.global.isPlaying) {
             if (this._index >= this.CAN_EXEC_COUNT || this._index >= this._count) {
-                console.log("开始执行");
+                GameLog.log("开始执行");
                 this.execNextStep();
             }
         }
@@ -71,7 +71,7 @@ class DataManager {
             this._stepList.shift().exec();
         }
         else {
-            console.log("全部执行结束");
+            GameLog.log("全部执行结束");
         }
     }
 }

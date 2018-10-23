@@ -10,7 +10,7 @@ class EnumSpeed {
     /**死亡消失时间 */
     public static DEAD_DISAPPEAR_TIME: number = 2000;
     /**时间倍数 */
-    public static SPEED: number = 1;
+    public static SPEED: number = 8;
     /**名字显示时间 */
     public static SHOW_NAME_TIME: number = 1000;
 

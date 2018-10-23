@@ -39,7 +39,7 @@ class StepSeizeBaseVo extends StepVo {
         this._avatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
         this._targetAvatar.showName(true, EnumSpeed.SHOW_NAME_TIME);
 
-        console.log(this.toString());
+        GameLog.log(this.toString());
         new SeizeBaseEffect().show(this._targetTeamId, App.layer.alertLayer, Config.STAGE_WIDTH >> 1, Config.STAGE_HEIGHT >> 1, new FunctionVo(this.updateHp, this));
     }
 
